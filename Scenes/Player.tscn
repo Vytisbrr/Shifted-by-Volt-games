@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
-[ext_resource type="Texture2D" uid="uid://bfh3olvj2f0ee" path="res://icon.svg" id="1_i7bms"]
+[ext_resource type="Texture2D" uid="uid://dapi8akfisq8i" path="res://winter_wizard-removebg-preview.png" id="2_sxte8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(129, 129)
@@ -12,7 +12,9 @@ speed = 500
 jump_force = 850
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_i7bms")
+position = Vector2(-0.500002, 4)
+scale = Vector2(0.280742, 0.224525)
+texture = ExtResource("2_sxte8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -0.5)
