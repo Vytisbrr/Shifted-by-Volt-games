@@ -175,6 +175,20 @@ position = Vector2(0, -0.0247521)
 scale = Vector2(0.00094162, 0.00990099)
 shape = SubResource("RectangleShape2D_rfqgr")
 
+[node name="platform10" type="StaticBody2D" parent="."]
+position = Vector2(-649, -460)
+scale = Vector2(1062, 101)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="platform10"]
+mesh = SubResource("QuadMesh_i8uk5")
+texture = ExtResource("2_o8k26")
+
+[node name="platform" type="CollisionShape2D" parent="platform10"]
+position = Vector2(0, -0.0247521)
+scale = Vector2(0.00094162, 0.00990099)
+shape = SubResource("RectangleShape2D_rfqgr")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -1
 scale = Vector2(50, 50)
