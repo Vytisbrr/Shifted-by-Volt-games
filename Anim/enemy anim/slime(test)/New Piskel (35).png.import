@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dclhhfin20gnr"
-path="res://.godot/imported/New Piskel-1.png (3).png-4e9f9275daced101c47dd36f53e894c9.ctex"
+uid="uid://ccdfigqxn755r"
+path="res://.godot/imported/New Piskel (35).png-a5f06889fddb993d890ae80cd5b2e5b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player animations/wrigg/New Piskel-1.png (3).png"
-dest_files=["res://.godot/imported/New Piskel-1.png (3).png-4e9f9275daced101c47dd36f53e894c9.ctex"]
+source_file="res://Anim/enemy anim/slime(test)/New Piskel (35).png"
+dest_files=["res://.godot/imported/New Piskel (35).png-a5f06889fddb993d890ae80cd5b2e5b0.ctex"]
 
 [params]
 

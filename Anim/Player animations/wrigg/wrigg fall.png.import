@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpb5tkk76al30"
-path="res://.godot/imported/wrigg idle.png-c9aa73189c5c0bcdae06a4dad6ee3747.ctex"
+uid="uid://cgm0mu765l2p4"
+path="res://.godot/imported/wrigg fall.png-5c6b1e9aeb4660d9fcbb15736bd77edb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player animations/wrigg/wrigg idle.png"
-dest_files=["res://.godot/imported/wrigg idle.png-c9aa73189c5c0bcdae06a4dad6ee3747.ctex"]
+source_file="res://Anim/Player animations/wrigg/wrigg fall.png"
+dest_files=["res://.godot/imported/wrigg fall.png-5c6b1e9aeb4660d9fcbb15736bd77edb.ctex"]
 
 [params]
 

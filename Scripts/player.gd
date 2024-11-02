@@ -7,14 +7,19 @@ extends CharacterBody2D
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var coyote_timer = $coyotetimer
+var can_coyote_jump = false
 
 func _physics_process(delta):
-	if !is_on_floor():
+	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
 		if velocity.y > 1000:
 			velocity.y = 1000
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		velocity.y = -jump_force
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor() || can_coyote_jump:
+			velocity.y = -jump_force
+			if can_coyote_jump:
+				can_coyote_jump = false
 	
 	
 	var horizontal_direction = Input.get_axis("move left","move right")
@@ -24,7 +29,12 @@ func _physics_process(delta):
 	if horizontal_direction != 0:
 		sprite.flip_h = (horizontal_direction == -1)
 	
+	
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	if was_on_floor && !is_on_floor() && velocity.y >= 0:
+		can_coyote_jump = true
+		coyote_timer.start()
 
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
@@ -38,3 +48,5 @@ func updateanimations(horizotal_direction):
 			ap.play("fall")
 		elif velocity.y > 0:
 			ap.play("fall")
+func _on_coyotetimer_timeout():
+	can_coyote_jump = false

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
-[ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
-[ext_resource type="Texture2D" uid="uid://bpb5tkk76al30" path="res://Player animations/wrigg/wrigg idle.png" id="3_2w2qe"]
-[ext_resource type="Texture2D" uid="uid://t418j6q8qjyb" path="res://Player animations/wrigg/wrigg jump.png" id="4_7jw1a"]
-[ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
+[ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Anim/Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
+[ext_resource type="Texture2D" uid="uid://bpb5tkk76al30" path="res://Anim/Player animations/wrigg/wrigg idle.png" id="3_2w2qe"]
+[ext_resource type="Texture2D" uid="uid://t418j6q8qjyb" path="res://Anim/Player animations/wrigg/wrigg jump.png" id="4_7jw1a"]
+[ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Anim/Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -297,6 +297,7 @@ zoom = Vector2(0.5, 0.5)
 position = Vector2(0, -7)
 scale = Vector2(0.284, 0.284)
 texture = ExtResource("2_kax1k")
+offset = Vector2(-40, 0)
 hframes = 3
 vframes = 4
 metadata/_edit_group_ = true
@@ -307,3 +308,9 @@ libraries = {
 }
 autoplay = "idle"
 speed_scale = 0.5
+
+[node name="coyotetimer" type="Timer" parent="."]
+wait_time = 0.12
+one_shot = true
+
+[connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
