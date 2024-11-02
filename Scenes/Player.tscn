@@ -1,24 +1,119 @@
-[gd_scene load_steps=4 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=17 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
-[ext_resource type="Texture2D" uid="uid://dapi8akfisq8i" path="res://winter_wizard-removebg-preview.png" id="2_sxte8"]
+[ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://New Piskel-1.png (3).png" id="2_kax1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
-size = Vector2(129, 129)
+size = Vector2(59, 226)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffbu3"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(0, 0, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oojal"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(864, 0, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kshfp"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(1728, 0, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5suko"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(0, 864, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n7m8"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(864, 864, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00bo2"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(1728, 864, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k62f0"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(0, 1728, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s7al"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(864, 1728, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xihvi"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(1728, 1728, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vokx"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(0, 2592, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdo44"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(864, 2592, 864, 864)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_685g3"]
+atlas = ExtResource("2_kax1k")
+region = Rect2(1728, 2592, 864, 864)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ioelp"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ffbu3")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_oojal")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kshfp")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_5suko")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3n7m8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_00bo2")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_k62f0")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_0s7al")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_xihvi")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_8vokx")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_rdo44")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_685g3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wrigg" type="CharacterBody2D"]
 script = ExtResource("1_d3vyt")
 speed = 500
 jump_force = 850
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.500002, 4)
-scale = Vector2(0.280742, 0.224525)
-texture = ExtResource("2_sxte8")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -0.5)
+position = Vector2(-22.5, 2)
 shape = SubResource("RectangleShape2D_wt4lo")
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, -8)
+scale = Vector2(0.283854, 0.284916)
+sprite_frames = SubResource("SpriteFrames_ioelp")
+frame_progress = 0.900384
+metadata/_edit_group_ = true
