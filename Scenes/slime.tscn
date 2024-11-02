@@ -133,3 +133,4 @@ libraries = {
 "": SubResource("AnimationLibrary_njyx8")
 }
 autoplay = "idle"
+speed_scale = 0.5
