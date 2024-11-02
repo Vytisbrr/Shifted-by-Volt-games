@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dclhhfin20gnr"
-path="res://.godot/imported/New Piskel-1.png (3).png-2fdb3b707e138047114945cd7aa496d5.ctex"
+uid="uid://bpb5tkk76al30"
+path="res://.godot/imported/wrigg idle.png-c9aa73189c5c0bcdae06a4dad6ee3747.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://New Piskel-1.png (3).png"
-dest_files=["res://.godot/imported/New Piskel-1.png (3).png-2fdb3b707e138047114945cd7aa496d5.ctex"]
+source_file="res://Player animations/wrigg/wrigg idle.png"
+dest_files=["res://.godot/imported/wrigg idle.png-c9aa73189c5c0bcdae06a4dad6ee3747.ctex"]
 
 [params]
 
