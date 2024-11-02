@@ -35,6 +35,6 @@ func updateanimations(horizotal_direction):
 			ap.play("walk")
 	else:
 		if velocity.y < 0:
-			ap.play("jump")
+			ap.play("fall")
 		elif velocity.y > 0:
 			ap.play("fall")
