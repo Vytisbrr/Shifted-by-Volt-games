@@ -64,11 +64,12 @@ func _on_hitbox_area_entered(area: Area2D):
 		currentHealth -= 1
 		if currentHealth <= 0:
 			currentHealth = 0
-			print ("You Died!")
+			print ("YOU DIED!")
 			get_tree().reload_current_scene()
-				
+			
 		healthChanged.emit(currentHealth)
 func _ready():
 	HeartContainer.setmaxHearts(maxHealth)
 	HeartContainer.updateHearts(currentHealth)
 	healthChanged.connect(HeartContainer.updateHearts)
+	
