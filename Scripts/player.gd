@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+
+signal healthChanged
 @export var speed = 400
 @export var gravity = 30
 @export var jump_force = 300
@@ -62,7 +64,8 @@ func _on_hitbox_area_entered(area: Area2D):
 		currentHealth -= 1
 		if currentHealth < 0:
 			currentHealth = 0
-			print("u ded L, also you cant loose health idiot, forgot to code death")
-		print_debug(currentHealth)
+		healthChanged.emit(currentHealth)
 func _ready():
-	HeartContainer.setmaxHearts(3)
+	HeartContainer.setmaxHearts(maxHealth)
+	HeartContainer.updateHearts(currentHealth)
+	healthChanged.connect(HeartContainer.updateHearts)
