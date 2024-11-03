@@ -6,7 +6,6 @@ signal healthChanged
 @export var gravity = 30
 @export var jump_force = 300
 
-@onready var deathtimer = $"until death"
 @export var maxHealth = 3
 @onready var currentHealth: int = maxHealth
 @onready var HeartContainer = $CanvasLayer/Hearts
@@ -65,15 +64,11 @@ func _on_hitbox_area_entered(area: Area2D):
 		currentHealth -= 1
 		if currentHealth <= 0:
 			currentHealth = 0
-			deathtimer.start()
+			print ("You Died!")
+			get_tree().reload_current_scene()
 				
 		healthChanged.emit(currentHealth)
 func _ready():
 	HeartContainer.setmaxHearts(maxHealth)
 	HeartContainer.updateHearts(currentHealth)
 	healthChanged.connect(HeartContainer.updateHearts)
-
-
-func _on_until_death_timeout() -> void:
-	print ("You Died!")
-	get_tree().reload_current_scene()

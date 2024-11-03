@@ -333,9 +333,5 @@ transform = Transform2D(4, 0, 0, 4, 0, 0)
 [node name="Hearts" parent="CanvasLayer" instance=ExtResource("6_1y5o0")]
 offset_right = 56.0
 
-[node name="until death" type="Timer" parent="."]
-wait_time = 0.3
-
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="timeout" from="until death" to="." method="_on_until_death_timeout"]
