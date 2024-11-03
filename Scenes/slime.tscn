@@ -3,9 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="1_n1k58"]
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_nqdaf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw3oq"]
-size = Vector2(169, 117)
-
 [sub_resource type="Animation" id="Animation_vma26"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,6 +112,9 @@ _data = {
 "idle": SubResource("Animation_ybidx")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw3oq"]
+size = Vector2(272, 173)
+
 [node name="slime" type="CharacterBody2D"]
 script = ExtResource("1_nqdaf")
 
@@ -124,13 +124,21 @@ texture = ExtResource("1_n1k58")
 hframes = 3
 vframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 16.5)
-shape = SubResource("RectangleShape2D_yw3oq")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_njyx8")
 }
 autoplay = "idle"
 speed_scale = 0.5
+
+[node name="enemyarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemyarea"]
+position = Vector2(-1, 13)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_yw3oq")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 20.5)
+scale = Vector2(0.6, 0.6)
+shape = SubResource("RectangleShape2D_yw3oq")

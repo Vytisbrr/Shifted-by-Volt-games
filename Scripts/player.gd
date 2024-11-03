@@ -4,11 +4,14 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var jump_force = 300
 
-
+@export var maxHealth = 3
+@onready var currentHealth: int = maxHealth
+@onready var HeartContainer = $CanvasLayer/Hearts
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var coyote_timer = $coyotetimer
 var can_coyote_jump = false
+
 
 func _physics_process(delta):
 	if !is_on_floor() && (can_coyote_jump == false):
@@ -35,7 +38,6 @@ func _physics_process(delta):
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		can_coyote_jump = true
 		coyote_timer.start()
-
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
 	if is_on_floor():
@@ -50,3 +52,17 @@ func updateanimations(horizotal_direction):
 			ap.play("fall")
 func _on_coyotetimer_timeout():
 	can_coyote_jump = false
+	
+
+
+
+
+func _on_hitbox_area_entered(area: Area2D):
+	if area.name == "enemyarea":
+		currentHealth -= 1
+		if currentHealth < 0:
+			currentHealth = 0
+			print("u ded L, also you cant loose health idiot, forgot to code death")
+		print_debug(currentHealth)
+func _ready():
+	HeartContainer.setmaxHearts(3)
