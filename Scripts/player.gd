@@ -62,8 +62,11 @@ func _on_coyotetimer_timeout():
 func _on_hitbox_area_entered(area: Area2D):
 	if area.name == "enemyarea":
 		currentHealth -= 1
-		if currentHealth < 0:
+		if currentHealth <= 0:
 			currentHealth = 0
+			print ("You Died!")
+			get_tree().reload_current_scene()
+				
 		healthChanged.emit(currentHealth)
 func _ready():
 	HeartContainer.setmaxHearts(maxHealth)

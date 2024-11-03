@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkrrpdydkuxny" path="res://Scenes/slime.tscn" id="4_bxsdk"]
 [ext_resource type="Texture2D" uid="uid://blw6acmo7vgbl" path="res://tilemap/DirtTilemap-Shifted.png" id="4_f1pqs"]
 [ext_resource type="PackedScene" uid="uid://th02mvw6u4ur" path="res://Scenes/Player.tscn" id="5_r1bfq"]
-[ext_resource type="PackedScene" uid="uid://cn7ws87fahmg2" path="res://Scenes/killzone.tscn" id="5_sr1g5"]
+[ext_resource type="PackedScene" uid="uid://cn7ws87fahmg2" path="res://killzone.tscn" id="5_sr1g5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mafyp"]
 texture = ExtResource("3_pj56p")
@@ -36,9 +36,7 @@ sources/1 = SubResource("TileSetAtlasSource_s764c")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pjss"]
 size = Vector2(576, 96)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x7d44"]
-normal = Vector2(0.999629, -0.0272431)
-distance = -2058.34
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_irgna"]
 
 [node name="world" type="Node2D"]
 
@@ -67,5 +65,5 @@ position = Vector2(-1295, 362)
 position = Vector2(-3611, 1186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(3265, -397)
-shape = SubResource("WorldBoundaryShape2D_x7d44")
+position = Vector2(2299.53, -1.55383)
+shape = SubResource("WorldBoundaryShape2D_irgna")
