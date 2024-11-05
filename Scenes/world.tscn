@@ -60,7 +60,7 @@ tile_set = SubResource("TileSet_2gve2")
 
 [node name="Wrigg" parent="." instance=ExtResource("5_r1bfq")]
 z_index = 1
-position = Vector2(-840, 620)
+position = Vector2(-840, 368)
 
 [node name="Killzone" parent="." instance=ExtResource("5_sr1g5")]
 z_index = 1
