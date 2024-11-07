@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=16 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Anim/Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
+
+[sub_resource type="Animation" id="Animation_3a3ft"]
+resource_name = "Death"
 
 [sub_resource type="Animation" id="Animation_dbkr2"]
 length = 0.001
@@ -274,6 +277,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0rht"]
 _data = {
+"Death": SubResource("Animation_3a3ft"),
 "RESET": SubResource("Animation_dbkr2"),
 "fall": SubResource("Animation_2xtek"),
 "idle": SubResource("Animation_j604j"),
@@ -334,7 +338,7 @@ transform = Transform2D(4, 0, 0, 4, 0, 0)
 offset_right = 56.0
 
 [node name="Deathtimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.15
 
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
