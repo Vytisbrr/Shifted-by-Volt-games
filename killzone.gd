@@ -9,3 +9,4 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	pass # Replace with function body.
 	get_tree().reload_current_scene()
+	#EOE

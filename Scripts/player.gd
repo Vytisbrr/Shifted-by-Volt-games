@@ -77,4 +77,5 @@ func _ready():
 
 func _on_deathtimer_timeout() -> void:
 	print ("YOU DIED!")
+	print ("EMOTIONAL DAAAAAAMAGE!!!!!!!!!!!!!!")
 	get_tree().reload_current_scene()
