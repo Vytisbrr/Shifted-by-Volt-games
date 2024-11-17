@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var timer = $Timer
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: CharacterBody2D) -> void:
 	print("You Died!")
 	timer.start()
 

@@ -112,11 +112,13 @@ _data = {
 "idle": SubResource("Animation_ybidx")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_os7t5"]
-size = Vector2(164, 99)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5b02"]
+radius = 55.4956
+height = 178.018
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjaib"]
-size = Vector2(164, 97)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ihjg"]
+radius = 49.0
+height = 166.0
 
 [node name="slime" type="CharacterBody2D"]
 script = ExtResource("1_nqdaf")
@@ -138,8 +140,10 @@ speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyarea"]
 position = Vector2(1, 22.5)
-shape = SubResource("RectangleShape2D_os7t5")
+rotation = -1.56683
+shape = SubResource("CapsuleShape2D_j5b02")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 22.5)
-shape = SubResource("RectangleShape2D_mjaib")
+rotation = -1.58919
+shape = SubResource("CapsuleShape2D_5ihjg")
