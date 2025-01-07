@@ -12,19 +12,19 @@ signal healthChanged
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var coyote_timer = $coyotetimer
+@onready var Jumpbuffertimer = $Jumpbuffertimer
 var can_coyote_jump = false
+var jump_buffered = false
 
 
 func _physics_process(delta):
+	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
 		if velocity.y > 1000:
 			velocity.y = 1000
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor() || can_coyote_jump:
-			velocity.y = -jump_force
-			if can_coyote_jump:
-				can_coyote_jump = false
+		jump()
 	
 	
 	var horizontal_direction = Input.get_axis("move left","move right")
@@ -35,11 +35,16 @@ func _physics_process(delta):
 		sprite.flip_h = (horizontal_direction == -1)
 	
 	
-	var was_on_floor = is_on_floor()
 	move_and_slide()
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		can_coyote_jump = true
 		coyote_timer.start()
+	#Touched ground
+	if !was_on_floor && is_on_floor():
+		if jump_buffered:
+			jump_buffered = false
+			jump()
+	
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
 	if is_on_floor():
@@ -55,7 +60,15 @@ func updateanimations(horizotal_direction):
 func _on_coyotetimer_timeout():
 	can_coyote_jump = false
 	
-
+func jump():
+	if is_on_floor() || can_coyote_jump:
+		velocity.y = -jump_force
+		if can_coyote_jump:
+			can_coyote_jump = false
+	else:
+		if !jump_buffered:
+			jump_buffered = true
+			Jumpbuffertimer.start()
 
 
 
@@ -79,3 +92,11 @@ func _on_deathtimer_timeout() -> void:
 	print ("YOU DIED!")
 	print ("EMOTIONAL DAAAAAAMAGE!!!!!!!!!!!!!!")
 	get_tree().reload_current_scene()
+
+
+
+
+
+func _on_jumpbuffertimer_timeout() -> void:
+	jump_buffered = false
+	
