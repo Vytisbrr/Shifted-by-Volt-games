@@ -2,7 +2,11 @@ extends CharacterBody2D
 
 
 signal healthChanged
+<<<<<<< Updated upstream
 @export var speed = 1352
+=======
+@export var speed = 300
+>>>>>>> Stashed changes
 @export var gravity = 30
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
