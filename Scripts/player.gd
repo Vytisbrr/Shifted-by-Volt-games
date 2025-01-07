@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 
 signal healthChanged
-@export var speed = 400
+@export var speed = 1352
 @export var gravity = 30
-@export var jump_force = 300
+@export var jump_force = 900
 @onready var deathtimer = $Deathtimer
 @export var maxHealth = 3
 @onready var currentHealth: int = maxHealth
