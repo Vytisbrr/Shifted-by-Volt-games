@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 signal healthChanged
 @export var speed = 1000
 @export var gravity = 30
