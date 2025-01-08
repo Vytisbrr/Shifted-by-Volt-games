@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal healthChanged
-@export var speed = 1000
+@export var normalspeed = 1000
 @export var gravity = 30
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
@@ -12,17 +12,21 @@ signal healthChanged
 @onready var sprite = $Sprite2D
 @onready var coyote_timer = $coyotetimer
 @onready var Jumpbuffertimer = $Jumpbuffertimer
-@export var dashspeed = 1500
-@export var dashlengh = .1
-@onready var dash = $Dash
+@export var dashspeed = 6000
 var can_coyote_jump = false
 var jump_buffered = false
-
+var isdashing = false
+@onready var dashtimer = $dashtimer
+@onready var dashcooldowntimer = $Dashcooldowntimer
+var dashcoolingdown = false
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Dash"):
-		dash.startdash(dashlengh)
-		var fastnesdash = dashspeed if dash.is_dashing() else speed
+	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
+		dashtimer.start()
+		isdashing = true
+		dashcoolingdown = true
+		dashcooldowntimer.start()
+	var speed = dashspeed if isdashing == true else normalspeed
 	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
@@ -105,3 +109,11 @@ func _on_deathtimer_timeout() -> void:
 func _on_jumpbuffertimer_timeout() -> void:
 	jump_buffered = false
 	
+
+
+func _on_dashtimer_timeout():
+	isdashing = false
+
+
+func _on_dashcooldowntimer_timeout():
+	dashcoolingdown = false

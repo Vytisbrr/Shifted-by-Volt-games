@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=17 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Anim/Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://t418j6q8qjyb" path="res://Anim/Player animations/wrigg/wrigg jump.png" id="4_7jw1a"]
 [ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Anim/Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
-[ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://pause_menu.tscn" id="7_wh3cp"]
-[ext_resource type="PackedScene" uid="uid://raxvepqpke0q" path="res://Scenes/dash.tscn" id="8_je3t0"]
+[ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -345,15 +344,21 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
-offset_left = 1007.0
-offset_top = -368.0
-offset_right = 1007.0
-offset_bottom = -368.0
-scale = Vector2(4.52, 12.96)
+offset_left = -614.0
+offset_top = -578.0
+offset_right = 655.0
+offset_bottom = 274.0
+scale = Vector2(2.64535, 2.3244)
 
-[node name="Dash" parent="." instance=ExtResource("8_je3t0")]
+[node name="dashtimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Dashcooldowntimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
+[connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
+[connection signal="timeout" from="Dashcooldowntimer" to="." method="_on_dashcooldowntimer_timeout"]
