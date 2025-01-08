@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=18 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Anim/Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Anim/Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
 [ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://pause_menu.tscn" id="7_wh3cp"]
+[ext_resource type="PackedScene" uid="uid://raxvepqpke0q" path="res://Scenes/dash.tscn" id="8_je3t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -349,6 +350,8 @@ offset_top = -368.0
 offset_right = 1007.0
 offset_bottom = -368.0
 scale = Vector2(4.52, 12.96)
+
+[node name="Dash" parent="." instance=ExtResource("8_je3t0")]
 
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

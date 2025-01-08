@@ -20,6 +20,9 @@ var jump_buffered = false
 
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Dash"):
+		dash.startdash(dashlengh)
+		var fastnesdash = dashspeed if dash.is_dashing() else speed
 	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
