@@ -12,6 +12,9 @@ signal healthChanged
 @onready var sprite = $Sprite2D
 @onready var coyote_timer = $coyotetimer
 @onready var Jumpbuffertimer = $Jumpbuffertimer
+@export var dashspeed = 1500
+@export var dashlengh = .1
+@onready var dash = $Dash
 var can_coyote_jump = false
 var jump_buffered = false
 
