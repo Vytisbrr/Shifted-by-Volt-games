@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://t418j6q8qjyb" path="res://Anim/Player animations/wrigg/wrigg jump.png" id="4_7jw1a"]
 [ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Anim/Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
-[ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
+[ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://pause_menu.tscn" id="7_wh3cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)

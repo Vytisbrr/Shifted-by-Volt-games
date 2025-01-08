@@ -17,11 +17,9 @@ func testEsc():
 	if Input.is_action_just_pressed("esc") && get_tree().paused == false:
 		get_tree().paused = true
 		pause()
-		print("HELP ME I NEED HELP")
 	elif Input.is_action_just_pressed("esc") && get_tree().paused == true:
 		get_tree().paused = false
 		resume()
-		print("HELP ME I NEED HELP")
 
 func _on_resume_pressed() -> void:
 	resume()
