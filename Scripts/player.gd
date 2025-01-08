@@ -101,11 +101,7 @@ func _on_deathtimer_timeout() -> void:
 	print ("YOU DIED!")
 	print ("EMOTIONAL DAAAAAAMAGE!!!!!!!!!!!!!!")
 	get_tree().reload_current_scene()
-
-
-
-
-
+	
 func _on_jumpbuffertimer_timeout() -> void:
 	jump_buffered = false
 	
@@ -117,3 +113,6 @@ func _on_dashtimer_timeout():
 
 func _on_dashcooldowntimer_timeout():
 	dashcoolingdown = false
+	
+
+	

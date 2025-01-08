@@ -5,13 +5,13 @@ var pausemenuatstartfixed = false
 func resume():
 	get_tree().paused = false
 	hide()
+	
 func pause():
 	show()
 func didgamejuststart():
 	if pausemenuatstartfixed == false:
 		pausemenuatstartfixed = true
 		hide()
-
 
 func testEsc():
 	if Input.is_action_just_pressed("esc") && get_tree().paused == false:
@@ -26,6 +26,8 @@ func _on_resume_pressed() -> void:
 	
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+		
+		
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
