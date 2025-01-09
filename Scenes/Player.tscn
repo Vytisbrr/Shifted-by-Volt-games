@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Texture2D" uid="uid://dclhhfin20gnr" path="res://Anim/Player animations/wrigg/New Piskel-1.png (3).png" id="2_kax1k"]
 [ext_resource type="Texture2D" uid="uid://bpb5tkk76al30" path="res://Anim/Player animations/wrigg/wrigg idle.png" id="3_2w2qe"]
-[ext_resource type="Texture2D" uid="uid://t418j6q8qjyb" path="res://Anim/Player animations/wrigg/wrigg jump.png" id="4_7jw1a"]
 [ext_resource type="Texture2D" uid="uid://cgm0mu765l2p4" path="res://Anim/Player animations/wrigg/wrigg fall.png" id="5_2to3p"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
+[ext_resource type="Texture2D" uid="uid://d4cnqneky3711" path="res://Anim/Player animations/wrigg/Wrigg_Walk-Sheet.png" id="6_8ej24"]
 [ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
@@ -173,59 +173,11 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_6vg2o"]
 resource_name = "jump"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_7jw1a")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
+length = 0.3
 
 [sub_resource type="Animation" id="Animation_xfcij"]
 resource_name = "walk"
-length = 0.4333
+length = 0.225
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -237,7 +189,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_kax1k")]
+"values": [ExtResource("6_8ej24")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -261,7 +213,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -270,10 +222,10 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0rht"]
@@ -304,8 +256,8 @@ zoom = Vector2(0.5, 0.5)
 limit_bottom = 3500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -7)
-scale = Vector2(0.284, 0.284)
+position = Vector2(14.25, -4.49995)
+scale = Vector2(0.61875, 0.753125)
 texture = ExtResource("2_kax1k")
 offset = Vector2(-40, 0)
 hframes = 3
@@ -317,7 +269,7 @@ libraries = {
 "": SubResource("AnimationLibrary_o0rht")
 }
 autoplay = "idle"
-speed_scale = 0.5
+speed_scale = 0.35
 
 [node name="coyotetimer" type="Timer" parent="."]
 wait_time = 0.12
