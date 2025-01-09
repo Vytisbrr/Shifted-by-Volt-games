@@ -7,10 +7,12 @@ func resume():
 	hide()
 	
 func pause():
+	get_tree().paused = true
 	show()
 func didgamejuststart():
 	if pausemenuatstartfixed == false:
 		pausemenuatstartfixed = true
+		get_tree().paused = false
 		hide()
 
 func testEsc():
@@ -29,6 +31,5 @@ func _on_restart_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 func _process(delta: float):
-	get_tree().paused = false
 	didgamejuststart()
 	testEsc()

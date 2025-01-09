@@ -57,7 +57,7 @@ func _physics_process(delta):
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
 	if is_on_floor():
-		if horizotal_direction == 0:
+		if horizotal_direction == 0 && velocity.y == 0:
 			ap.play("idle")
 		else:
 			ap.play("walk")
