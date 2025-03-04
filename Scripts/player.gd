@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal healthChanged
 @export var normalspeed = 1000
-@export var gravity = 30
+@export var gravity = 35
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
 @export var maxHealth = 3
@@ -30,8 +30,8 @@ func _physics_process(delta):
 	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
-		if velocity.y > 1000:
-			velocity.y = 1000
+		if velocity.y > 3000:
+			velocity.y = 3000
 	if Input.is_action_just_pressed("jump"):
 		jump()
 	
