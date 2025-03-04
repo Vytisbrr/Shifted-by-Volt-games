@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o4bbxjfl0q4l"
-path="res://.godot/imported/Wrigg_Jump-Sheet.png-a65607c7a3e4cebf9939e47073ccd9f9.ctex"
+uid="uid://cfcklqwjmvkr2"
+path="res://.godot/imported/Wrigg_Jump-SheetGood.png-61ee0dfe3d8637f7689c18826066d40d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anim/Player animations/wrigg/Wrigg_Jump-Sheet.png"
-dest_files=["res://.godot/imported/Wrigg_Jump-Sheet.png-a65607c7a3e4cebf9939e47073ccd9f9.ctex"]
+source_file="res://Anim/Player animations/wrigg/Wrigg_Jump-SheetGood.png"
+dest_files=["res://.godot/imported/Wrigg_Jump-SheetGood.png-61ee0dfe3d8637f7689c18826066d40d.ctex"]
 
 [params]
 

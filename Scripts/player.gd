@@ -63,7 +63,7 @@ func updateanimations(horizotal_direction):
 			ap.play("walk")
 	else:
 		if velocity.y < 0:
-			ap.play("jump")
+			ap.play("Jump")
 		elif velocity.y > 0:
 			ap.play("fall")
 func _on_coyotetimer_timeout():
