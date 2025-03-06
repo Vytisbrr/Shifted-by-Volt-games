@@ -92,8 +92,8 @@ tile_map_data = PackedByteArray("AAD1/wUAAAAAAAAAAAD2/wUAAAAAAAAAAAD3/wUAAAAAAAA
 tile_set = SubResource("TileSet_sa1n1")
 
 [node name="slime" parent="Dirt" instance=ExtResource("5_deq7f")]
-position = Vector2(-419.333, 176.667)
-scale = Vector2(2.50667, 2.50667)
+position = Vector2(-217.5, 89.8333)
+scale = Vector2(0.260003, 0.233336)
 
 [node name="slime2" parent="Dirt" instance=ExtResource("5_deq7f")]
 position = Vector2(-766.833, 212.5)

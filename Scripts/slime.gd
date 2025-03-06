@@ -1,7 +1,7 @@
-extends Node2D
+extends CharacterBody2D
 
-const SPEED=60
-
+@export var SPEED = 60
+@export var gravity = 20
 var direction = 1
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -12,14 +12,19 @@ var direction = 1
 @onready var area = $enemyarea
 
 func _physics_process(delta):
-	position.x += direction * SPEED * delta
+	move_and_slide()
+	if !is_on_floor():
+		velocity.y += gravity
+		if velocity.y > 3000:
+			velocity.y = 3000
+	if is_on_floor():
+		velocity.x += direction * SPEED
 	var slime = $Sprite2D
 	updateanimations(slime)
-func updateanimations(slime):
-	ap.play("idle")
-	
-func _process(delta):
 	if ray_cast_right. is_colliding():
 		direction = -1
 	if ray_cast_left. is_colliding():
 		direction = 1
+func updateanimations(slime):
+	ap.play("idle")
+	
