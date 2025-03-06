@@ -5,7 +5,7 @@ signal healthChanged
 @export var gravity = 35
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
-@export var maxHealth = 3
+@export var maxHealth = 10
 @onready var currentHealth: int = maxHealth
 @onready var HeartContainer = $CanvasLayer/Hearts
 @onready var ap = $AnimationPlayer
@@ -34,7 +34,7 @@ func _physics_process(delta):
 			velocity.y = 3000
 	if Input.is_action_just_pressed("jump"):
 		jump()
-	
+
 	
 	var horizontal_direction = Input.get_axis("move left","move right")
 	
