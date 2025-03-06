@@ -115,8 +115,7 @@ func _on_dashcooldowntimer_timeout():
 	dashcoolingdown = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Heal"):
+	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth:
 		currentHealth += 1
 		healthChanged.emit(currentHealth)
-		print ("hi")
 		
