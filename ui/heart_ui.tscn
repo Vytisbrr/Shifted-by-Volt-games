@@ -1,19 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwtmc8bu2e76c"]
 
-[ext_resource type="Texture2D" uid="uid://de5l41hq8g5dc" path="res://health/heart (2).png" id="1_2yqyw"]
 [ext_resource type="Script" path="res://ui/heart_ui.gd" id="1_sbqlf"]
+[ext_resource type="Texture2D" uid="uid://be1sqcryb8ww3" path="res://health/New Piskel (5).png" id="2_5kuh7"]
 
 [node name="HeartUI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(16, 13)
-offset_right = 16.0
-offset_bottom = 13.0
+custom_minimum_size = Vector2(1, 0)
+offset_right = 6.2
+offset_bottom = 17.2
 script = ExtResource("1_sbqlf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_2yqyw")
+position = Vector2(-13.6027, -6.73514)
+scale = Vector2(0.032558, 0.0299143)
+texture = ExtResource("2_5kuh7")
 centered = false
-hframes = 5
-frame = 4
+vframes = 2
