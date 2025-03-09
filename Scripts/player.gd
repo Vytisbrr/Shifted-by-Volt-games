@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 signal healthChanged
+@onready var hptext = $Label
+@onready var Hppickups = 0
 @export var normalspeed = 1000
 @export var gravity = 35
 @export var jump_force = 900
@@ -22,6 +24,7 @@ var isdashing = false
 var dashcoolingdown = false
 
 func _physics_process(delta):
+	displayhppickups()
 	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
 		dashtimer.start()
 		isdashing = true
@@ -155,5 +158,17 @@ func _on_dashcooldowntimer_timeout():
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0:
 		currentHealth += 1
+		Hppickups -= 1
 		healthChanged.emit(currentHealth)
-		
+
+
+func _on_healthpickup_area_entered(area: Area2D):
+	if area.name == "Healthpickup" && currentHealth < maxHealth && currentHealth > 0 && Hppickups > 0:
+		currentHealth += 1
+		healthChanged.emit(currentHealth)
+	elif area.name == "Healthpickup" && currentHealth == maxHealth && currentHealth > 0:
+		Hppickups += 1
+		if Hppickups > 9:
+			Hppickups = 9
+func displayhppickups():
+	hptext.text = str(Hppickups)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=18 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Texture2D" uid="uid://cfcklqwjmvkr2" path="res://Anim/Player animations/wrigg/Wrigg_Jump-SheetGood.png" id="4_8wx67"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
 [ext_resource type="Texture2D" uid="uid://d4cnqneky3711" path="res://Anim/Player animations/wrigg/Wrigg_Walk-Sheet.png" id="6_8ej24"]
 [ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
+[ext_resource type="Texture2D" uid="uid://dbjkdphm3yqoo" path="res://health/unnamed (2).png" id="7_ygmv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -287,6 +288,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj6fw"]
 size = Vector2(94, 238)
 
+[sub_resource type="Theme" id="Theme_a03oe"]
+default_font_size = 200
+
 [node name="Wrigg" type="CharacterBody2D"]
 position = Vector2(1158, 619)
 script = ExtResource("1_d3vyt")
@@ -299,7 +303,7 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4, 33)
 zoom = Vector2(0.5, 0.5)
-limit_bottom = 6000
+limit_bottom = 6200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(14.25, -4.49995)
@@ -321,9 +325,9 @@ speed_scale = 0.35
 wait_time = 0.12
 one_shot = true
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="playerhitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerhitbox"]
 position = Vector2(-10, -3)
 shape = SubResource("RectangleShape2D_nj6fw")
 
@@ -358,15 +362,38 @@ wait_time = 0.5
 wait_time = 0.05
 
 [node name="Falldmg" type="RayCast2D" parent="."]
-position = Vector2(-56, 99)
+position = Vector2(-53, 98)
 target_position = Vector2(0, 52)
 
 [node name="Falldmg" type="RayCast2D" parent="Falldmg"]
-position = Vector2(92, 1)
+position = Vector2(86, 2)
 target_position = Vector2(0, 52)
 
+[node name="Label" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1037.0
+offset_top = 451.0
+offset_right = 1151.0
+offset_bottom = 724.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_a03oe")
+theme_type_variation = &"HeaderLarge"
+text = "0"
+horizontal_alignment = 1
+
+[node name="Unnamed(2)" type="Sprite2D" parent="."]
+position = Vector2(952, 584)
+scale = Vector2(0.167969, 0.186523)
+texture = ExtResource("7_ygmv1")
+
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
-[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
