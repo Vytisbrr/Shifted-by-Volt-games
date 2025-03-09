@@ -21,9 +21,9 @@ func _physics_process(delta):
 		velocity.x += direction * SPEED
 	var slime = $Sprite2D
 	updateanimations(slime)
-	if ray_cast_right. is_colliding():
+	if ray_cast_right.is_colliding():
 		direction = -1
-	if ray_cast_left. is_colliding():
+	if ray_cast_left.is_colliding():
 		direction = 1
 func updateanimations(slime):
 	ap.play("idle")

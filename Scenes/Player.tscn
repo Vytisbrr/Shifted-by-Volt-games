@@ -299,7 +299,7 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4, 33)
 zoom = Vector2(0.5, 0.5)
-limit_bottom = 3500
+limit_bottom = 6000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(14.25, -4.49995)
@@ -356,6 +356,14 @@ wait_time = 0.5
 
 [node name="fall dmg" type="Timer" parent="."]
 wait_time = 0.05
+
+[node name="Falldmg" type="RayCast2D" parent="."]
+position = Vector2(-56, 99)
+target_position = Vector2(0, 52)
+
+[node name="Falldmg" type="RayCast2D" parent="Falldmg"]
+position = Vector2(92, 1)
+target_position = Vector2(0, 52)
 
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -18,6 +18,7 @@ var jump_buffered = false
 var isdashing = false
 @onready var dashtimer = $dashtimer
 @onready var dashcooldowntimer = $Dashcooldowntimer
+@onready var falldmg: RayCast2D = $Falldmg
 var dashcoolingdown = false
 
 func _physics_process(delta):
@@ -30,11 +31,48 @@ func _physics_process(delta):
 	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
-		if velocity.y > 3000:
-			velocity.y = 3000
+		if velocity.y > 4500:
+			velocity.y = 4500
 	if Input.is_action_just_pressed("jump"):
 		jump()
-
+	#falldamage start
+	if falldmg.is_colliding() && velocity.y >= 2000 && velocity.y < 2500:
+		currentHealth -= 2
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	if falldmg.is_colliding() && velocity.y >= 2500 && velocity.y < 3000:
+		currentHealth -= 4
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	if falldmg.is_colliding() && velocity.y >= 3000:
+		currentHealth -= 5
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	if falldmg.is_colliding() && velocity.y >= 3500 && velocity.y < 4000:
+		currentHealth -= 7
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	if falldmg.is_colliding() && velocity.y >= 4000 && velocity.y < 4500:
+		currentHealth -= 9
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	if falldmg.is_colliding() && velocity.y >= 4500:
+		currentHealth -= 10
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
+		healthChanged.emit(currentHealth)
+	#falldamage end
 	
 	var horizontal_direction = Input.get_axis("move left","move right")
 	
@@ -115,7 +153,7 @@ func _on_dashcooldowntimer_timeout():
 	dashcoolingdown = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth:
+	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0:
 		currentHealth += 1
 		healthChanged.emit(currentHealth)
 		
