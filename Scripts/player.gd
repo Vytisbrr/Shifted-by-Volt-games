@@ -24,6 +24,7 @@ var isdashing = false
 var dashcoolingdown = false
 
 func _physics_process(delta):
+	print(velocity.y)
 	displayhppickups()
 	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
 		dashtimer.start()
@@ -51,7 +52,7 @@ func _physics_process(delta):
 			currentHealth = 0
 			deathtimer.start()
 		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 3000:
+	if falldmg.is_colliding() && velocity.y >= 3000 && velocity.y < 3500:
 		currentHealth -= 5
 		if currentHealth <= 0:
 			currentHealth = 0
@@ -106,7 +107,7 @@ func updateanimations(horizotal_direction):
 		if velocity.y < 0:
 			ap.play("Jump")
 		elif velocity.y > 0:
-			ap.play("fall")
+			ap.play("falling")
 func _on_coyotetimer_timeout():
 	can_coyote_jump = false
 	
@@ -156,14 +157,14 @@ func _on_dashcooldowntimer_timeout():
 	dashcoolingdown = false
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0:
+	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0 && Hppickups > 0:
 		currentHealth += 1
 		Hppickups -= 1
 		healthChanged.emit(currentHealth)
 
 
 func _on_healthpickup_area_entered(area: Area2D):
-	if area.name == "Healthpickup" && currentHealth < maxHealth && currentHealth > 0 && Hppickups > 0:
+	if area.name == "Healthpickup" && currentHealth < maxHealth && currentHealth > 0:
 		currentHealth += 1
 		healthChanged.emit(currentHealth)
 	elif area.name == "Healthpickup" && currentHealth == maxHealth && currentHealth > 0:

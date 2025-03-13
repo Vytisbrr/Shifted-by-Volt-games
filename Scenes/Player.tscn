@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
-[ext_resource type="Texture2D" uid="uid://cfcklqwjmvkr2" path="res://Anim/Player animations/wrigg/Wrigg_Jump-SheetGood.png" id="4_8wx67"]
+[ext_resource type="Texture2D" uid="uid://bdmut3irs2pu0" path="res://Anim/Player animations/wrigg/Wrigg_JumpwHands-Sheet.png" id="3_rh1g0"]
 [ext_resource type="Texture2D" uid="uid://cxsd5npfeyabb" path="res://Anim/Player animations/wrigg/Wrigg_Idle-Sheet.png" id="4_tulo4"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
 [ext_resource type="Texture2D" uid="uid://d4cnqneky3711" path="res://Anim/Player animations/wrigg/Wrigg_Walk-Sheet.png" id="6_8ej24"]
@@ -16,7 +16,7 @@ resource_name = "Death"
 
 [sub_resource type="Animation" id="Animation_lon5p"]
 resource_name = "Jump"
-length = 0.19
+length = 0.13
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_8wx67")]
+"values": [ExtResource("3_rh1g0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -39,7 +39,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -51,7 +51,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -60,10 +60,10 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.13, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 3, 3]
+"values": [0, 1, 2, 2]
 }
 
 [sub_resource type="Animation" id="Animation_dbkr2"]
@@ -115,58 +115,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
-}
-
-[sub_resource type="Animation" id="Animation_o34ue"]
-resource_name = "fall"
-length = 0.03
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_8wx67")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_b7dj5"]
@@ -275,12 +223,65 @@ tracks/3/keys = {
 "values": [ExtResource("6_8ej24")]
 }
 
+[sub_resource type="Animation" id="Animation_a7ybx"]
+resource_name = "falling"
+length = 0.025
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rh1g0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0rht"]
 _data = {
 "Death": SubResource("Animation_3a3ft"),
 "Jump": SubResource("Animation_lon5p"),
 "RESET": SubResource("Animation_dbkr2"),
-"fall": SubResource("Animation_o34ue"),
+"falling": SubResource("Animation_a7ybx"),
 "idle": SubResource("Animation_b7dj5"),
 "walk": SubResource("Animation_xfcij")
 }
@@ -345,13 +346,6 @@ wait_time = 0.15
 wait_time = 0.3
 one_shot = true
 
-[node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
-offset_left = -614.0
-offset_top = -578.0
-offset_right = 655.0
-offset_bottom = 274.0
-scale = Vector2(2.64535, 2.3244)
-
 [node name="dashtimer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -362,12 +356,18 @@ wait_time = 0.5
 wait_time = 0.05
 
 [node name="Falldmg" type="RayCast2D" parent="."]
-position = Vector2(-53, 98)
+position = Vector2(-50, 98)
 target_position = Vector2(0, 52)
 
 [node name="Falldmg" type="RayCast2D" parent="Falldmg"]
-position = Vector2(86, 2)
+position = Vector2(85, 2)
 target_position = Vector2(0, 52)
+collide_with_areas = true
+
+[node name="Unnamed(2)" type="Sprite2D" parent="."]
+position = Vector2(952, 584)
+scale = Vector2(0.167969, 0.186523)
+texture = ExtResource("7_ygmv1")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 3
@@ -386,10 +386,12 @@ theme_type_variation = &"HeaderLarge"
 text = "0"
 horizontal_alignment = 1
 
-[node name="Unnamed(2)" type="Sprite2D" parent="."]
-position = Vector2(952, 584)
-scale = Vector2(0.167969, 0.186523)
-texture = ExtResource("7_ygmv1")
+[node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
+offset_left = -614.0
+offset_top = -578.0
+offset_right = 655.0
+offset_bottom = 274.0
+scale = Vector2(2.64535, 2.3244)
 
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
