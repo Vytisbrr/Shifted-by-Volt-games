@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var SPEED = 60
+@export var SPEED = 200
 @export var gravity = 20
+@export var hp = 3
 var direction = 1
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -10,7 +11,9 @@ var direction = 1
 
 @onready var ap =  $AnimationPlayer
 @onready var area = $enemyarea
-
+@onready var deathtimer = $deathtimer
+var immunity = false
+var dead = false
 func _physics_process(delta):
 	move_and_slide()
 	if !is_on_floor():
@@ -18,7 +21,7 @@ func _physics_process(delta):
 		if velocity.y > 3000:
 			velocity.y = 3000
 	if is_on_floor():
-		velocity.x += direction * SPEED
+		velocity.x = direction * SPEED
 	var slime = $Sprite2D
 	updateanimations(slime)
 	if ray_cast_right.is_colliding():
@@ -26,5 +29,18 @@ func _physics_process(delta):
 	if ray_cast_left.is_colliding():
 		direction = 1
 func updateanimations(slime):
-	ap.play("idle")
-	
+	if dead == false:
+		ap.play("idle")
+func _on_hurtbox_area_entered(area: Area2D):
+	if area.name == "Swordhitboxdefault":
+		hp -= 1
+		if hp <= 0:
+			hp = 0
+			dead = true
+			ap.play("death")
+			
+
+
+func _on_animation_player_animation_finished(anim_name: StringName):
+	if anim_name == "death":
+		queue_free()

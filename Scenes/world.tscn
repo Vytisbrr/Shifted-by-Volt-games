@@ -96,6 +96,10 @@ tile_set = SubResource("TileSet_sa1n1")
 position = Vector2(-217.5, 89.8333)
 scale = Vector2(0.260003, 0.233336)
 
+[node name="slime3" parent="Dirt" instance=ExtResource("5_deq7f")]
+position = Vector2(135.167, 63.8333)
+scale = Vector2(0.260003, 0.233336)
+
 [node name="slime2" parent="Dirt" instance=ExtResource("5_deq7f")]
 position = Vector2(-766.833, 212.5)
 scale = Vector2(0.153333, 0.153333)

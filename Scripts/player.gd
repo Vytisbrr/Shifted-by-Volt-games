@@ -14,6 +14,8 @@ signal healthChanged
 @onready var sprite = $Sprite2D
 @onready var coyote_timer = $coyotetimer
 @onready var Jumpbuffertimer = $Jumpbuffertimer
+@onready var swordhitboxdefault = $Swordhitboxdefault
+@onready var attacktimetimer = $attacktimetimer
 @export var dashspeed = 6000
 var can_coyote_jump = false
 var jump_buffered = false
@@ -22,9 +24,10 @@ var isdashing = false
 @onready var dashcooldowntimer = $Dashcooldowntimer
 @onready var falldmg: RayCast2D = $Falldmg
 var dashcoolingdown = false
-
+var isattacking = false
+var was_grounded = true
+var fall_speed_threshold = 1800
 func _physics_process(delta):
-	print(velocity.y)
 	displayhppickups()
 	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
 		dashtimer.start()
@@ -39,45 +42,14 @@ func _physics_process(delta):
 			velocity.y = 4500
 	if Input.is_action_just_pressed("jump"):
 		jump()
-	#falldamage start
-	if falldmg.is_colliding() && velocity.y >= 2000 && velocity.y < 2500:
-		currentHealth -= 2
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 2500 && velocity.y < 3000:
-		currentHealth -= 4
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 3000 && velocity.y < 3500:
-		currentHealth -= 5
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 3500 && velocity.y < 4000:
-		currentHealth -= 7
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 4000 && velocity.y < 4500:
-		currentHealth -= 9
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	if falldmg.is_colliding() && velocity.y >= 4500:
-		currentHealth -= 10
-		if currentHealth <= 0:
-			currentHealth = 0
-			deathtimer.start()
-		healthChanged.emit(currentHealth)
-	#falldamage end
-	
+	if Input.is_action_just_pressed("attack"):
+		isattacking = true
+		ap.play("Sword swing")
+		attacktimetimer.start()
+	if Input.is_action_just_pressed("attack") && !isattacking:
+		isattacking = true
+		ap.play("Sword swing")
+		attacktimetimer.start()
 	var horizontal_direction = Input.get_axis("move left","move right")
 	
 	velocity.x = speed * horizontal_direction
@@ -95,18 +67,17 @@ func _physics_process(delta):
 		if jump_buffered:
 			jump_buffered = false
 			jump()
-	
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
-	if is_on_floor():
+	if is_on_floor() && isattacking == false:
 		if horizotal_direction == 0 && velocity.y == 0:
 			ap.play("idle")
 		else:
 			ap.play("walk")
 	else:
-		if velocity.y < 0:
+		if velocity.y < 0 && isattacking == false:
 			ap.play("Jump")
-		elif velocity.y > 0:
+		elif velocity.y > 0 && isattacking == false:
 			ap.play("falling")
 func _on_coyotetimer_timeout():
 	can_coyote_jump = false
@@ -173,3 +144,5 @@ func _on_healthpickup_area_entered(area: Area2D):
 			Hppickups = 9
 func displayhppickups():
 	hptext.text = str(Hppickups)
+func _on_attacktimetimer_timeout():
+	isattacking = false
