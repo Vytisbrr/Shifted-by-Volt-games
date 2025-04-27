@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 200
 @export var gravity = 20
-@export var hp = 3
+@export var hp = 5
 var direction = 1
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -23,7 +23,7 @@ func _physics_process(delta):
 		velocity.y += gravity
 		if velocity.y > 3000:
 			velocity.y = 3000
-	if !was_on_floor && velocity.y >= 1500 && raycastfall.is_colliding():
+	if !was_on_floor && velocity.y >= 1000 && raycastfall.is_colliding():
 		velocity.y = -abs(velocity.y)/1.25
 		velocity.x = direction * SPEED
 	if is_on_floor():

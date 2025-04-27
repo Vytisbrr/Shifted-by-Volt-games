@@ -412,9 +412,6 @@ default_font_size = 200
 position = Vector2(1158, 619)
 script = ExtResource("1_d3vyt")
 
-[node name="attacktimetimer" type="Timer" parent="."]
-wait_time = 0.5
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-22.5, 2)
 shape = SubResource("RectangleShape2D_wt4lo")
@@ -490,12 +487,13 @@ position = Vector2(952, 584)
 scale = Vector2(0.167969, 0.186523)
 texture = ExtResource("7_ygmv1")
 
-[node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
-offset_left = -642.0
-offset_top = -585.0
-offset_right = 656.0
-offset_bottom = 267.0
-scale = Vector2(2.64535, 2.3244)
+[node name="Swordhitboxdefault" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Swordhitboxdefault"]
+polygon = PackedVector2Array(-22, 31, -43, 29, -48, 43, -23, 85, 20, 87, 53, 75, 81, 65, 103, 2, 103, -70, 67, -112, 54, -123, 38, -120, 30, -106, 31, -59, 54, -30, 54, 9, 34, 31, -10, 36)
+disabled = true
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 3
@@ -514,15 +512,13 @@ theme_type_variation = &"HeaderLarge"
 text = "0"
 horizontal_alignment = 1
 
-[node name="Swordhitboxdefault" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+[node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
+offset_left = -642.0
+offset_top = -585.0
+offset_right = 656.0
+offset_bottom = 267.0
+scale = Vector2(2.64535, 2.3244)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Swordhitboxdefault"]
-polygon = PackedVector2Array(-22, 31, -43, 29, -48, 43, -23, 85, 20, 87, 53, 75, 81, 65, 103, 2, 103, -70, 67, -112, 54, -123, 38, -120, 30, -106, 31, -59, 54, -30, 54, 9, 34, 31, -10, 36)
-disabled = true
-
-[connection signal="timeout" from="attacktimetimer" to="." method="_on_attacktimetimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]

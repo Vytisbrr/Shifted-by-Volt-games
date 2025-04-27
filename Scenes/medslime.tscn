@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkrrpdydkuxny"]
+[gd_scene load_steps=9 format=3 uid="uid://dwdwh7ehpk4j4"]
 
-[ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="1_n1k58"]
-[ext_resource type="Script" path="res://scripts/slime.gd" id="1_nqdaf"]
+[ext_resource type="Script" path="res://Scenes/medslime.gd" id="1_gqgd7"]
+[ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="2_kmxn1"]
 
 [sub_resource type="Animation" id="Animation_vma26"]
 length = 0.001
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_n1k58")]
+"values": [ExtResource("2_kmxn1")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -102,58 +102,6 @@ tracks/7/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_ybidx"]
-resource_name = "idle"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_n1k58")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-
 [sub_resource type="Animation" id="Animation_wbuvs"]
 resource_name = "death"
 length = 0.37
@@ -167,7 +115,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_n1k58")]
+"values": [ExtResource("2_kmxn1")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -254,6 +202,58 @@ tracks/7/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ybidx"]
+resource_name = "idle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_kmxn1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njyx8"]
 _data = {
 "RESET": SubResource("Animation_vma26"),
@@ -270,11 +270,13 @@ radius = 49.0
 height = 166.0
 
 [node name="slime" type="CharacterBody2D"]
-script = ExtResource("1_nqdaf")
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_gqgd7")
+SPEED = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.284, 0.284)
-texture = ExtResource("1_n1k58")
+texture = ExtResource("2_kmxn1")
 hframes = 3
 vframes = 3
 
@@ -316,6 +318,23 @@ target_position = Vector2(122, 0)
 
 [node name="deathtimer" type="Timer" parent="."]
 
+[node name="bouncetimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="RayCastfall" type="RayCast2D" parent="."]
+position = Vector2(0, 61)
+scale = Vector2(0.75, 0.71)
+target_position = Vector2(0, 75)
+
+[node name="RayCastfall" type="RayCast2D" parent="RayCastfall"]
+position = Vector2(-81.3334, 0)
+target_position = Vector2(0, 75)
+
+[node name="RayCastfall" type="RayCast2D" parent="RayCastfall/RayCastfall"]
+position = Vector2(163.533, 0)
+target_position = Vector2(0, 75)
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="deathtimer" to="." method="_on_deathtimer_timeout"]
+[connection signal="timeout" from="bouncetimer" to="." method="_on_bouncetimer_timeout"]

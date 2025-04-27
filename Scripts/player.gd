@@ -15,7 +15,6 @@ signal healthChanged
 @onready var coyote_timer = $coyotetimer
 @onready var Jumpbuffertimer = $Jumpbuffertimer
 @onready var swordhitboxdefault = $Swordhitboxdefault
-@onready var attacktimetimer = $attacktimetimer
 @export var dashspeed = 6000
 var can_coyote_jump = false
 var jump_buffered = false
@@ -26,7 +25,7 @@ var isdashing = false
 var dashcoolingdown = false
 var isattacking = false
 var was_grounded = true
-var fall_speed_threshold = 1800
+var bouncing = false
 func _physics_process(delta):
 	displayhppickups()
 	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
@@ -42,21 +41,14 @@ func _physics_process(delta):
 			velocity.y = 4500
 	if Input.is_action_just_pressed("jump"):
 		jump()
-	if Input.is_action_just_pressed("attack"):
-		isattacking = true
-		ap.play("Sword swing")
-		attacktimetimer.start()
 	if Input.is_action_just_pressed("attack") && !isattacking:
 		isattacking = true
 		ap.play("Sword swing")
-		attacktimetimer.start()
 	var horizontal_direction = Input.get_axis("move left","move right")
-	
 	velocity.x = speed * horizontal_direction
 	
 	if horizontal_direction != 0:
 		sprite.flip_h = (horizontal_direction == -1)
-	
 	
 	move_and_slide()
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
@@ -144,5 +136,6 @@ func _on_healthpickup_area_entered(area: Area2D):
 			Hppickups = 9
 func displayhppickups():
 	hptext.text = str(Hppickups)
-func _on_attacktimetimer_timeout():
-	isattacking = false
+func _on_animation_player_animation_finished(anim_name: StringName):
+	if anim_name == "Sword swing":
+		isattacking = false
