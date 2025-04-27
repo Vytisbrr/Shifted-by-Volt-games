@@ -23,14 +23,8 @@ func _physics_process(delta):
 		velocity.y += gravity
 		if velocity.y > 3000:
 			velocity.y = 3000
-	if !was_on_floor && velocity.y >= 2000 && raycastfall.is_colliding():
-		velocity.y = -abs(velocity.y)/1.25
-		velocity.x = direction * SPEED
 	if is_on_floor():
-		was_on_floor = true
 		velocity.x = direction * SPEED
-	else:
-		was_on_floor = false
 	var slime = $Sprite2D
 	updateanimations(slime)
 	if ray_cast_right.is_colliding():

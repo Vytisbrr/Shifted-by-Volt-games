@@ -182,4 +182,7 @@ wait_time = 10.0
 position = Vector2(-5146, -185)
 scale = Vector2(7, 7)
 
+[node name="slime5" parent="." instance=ExtResource("8_4ckwl")]
+position = Vector2(-4349, -221)
+
 [connection signal="timeout" from="smslimedelay" to="smSlimespwanpoint" method="_on_smslimedelay_timeout"]

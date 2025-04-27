@@ -11,10 +11,10 @@ signal healthChanged
 @onready var currentHealth: int = maxHealth
 @onready var HeartContainer = $CanvasLayer/Hearts
 @onready var ap = $AnimationPlayer
-@onready var sprite = $Sprite2D
+@onready var sprite = $wrigg
 @onready var coyote_timer = $coyotetimer
 @onready var Jumpbuffertimer = $Jumpbuffertimer
-@onready var swordhitboxdefault = $Swordhitboxdefault
+@onready var swordhitboxdefault = $wrigg/Swordhitboxdefault
 @export var dashspeed = 6000
 var can_coyote_jump = false
 var jump_buffered = false
@@ -30,6 +30,7 @@ var has_sword = false
 var showswordpickup = false
 @onready var defaultsword = $Defaultsword
 @onready var swordpickuptimer = $swordpickuptimer
+@onready var camera: Camera2D = get_tree().get_first_node_in_group("camera")
 func _physics_process(delta):
 	if showswordpickup == false:
 		defaultsword.visible = false
@@ -55,6 +56,7 @@ func _physics_process(delta):
 	
 	if horizontal_direction != 0:
 		sprite.flip_h = (horizontal_direction == -1)
+		swordhitboxdefault.scale.x = -1
 	
 	move_and_slide()
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
@@ -93,8 +95,10 @@ func jump():
 
 
 func _on_hitbox_area_entered(area: Area2D):
-	if area.name == "enemyarea":
-		currentHealth -= 1
+	if area.name == "bigslimearea":
+		currentHealth -= 3
+		camera.trigger_shake(20, 15)
+		framefreeze(0.05, 1)
 		if currentHealth <= 0:
 			currentHealth = 0
 			deathtimer.start()
@@ -128,15 +132,14 @@ func _on_dashcooldowntimer_timeout():
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0 && Hppickups > 0:
 		currentHealth += 3
+		if currentHealth > maxHealth:
+			currentHealth = maxHealth
 		Hppickups -= 1
 		healthChanged.emit(currentHealth)
 
 
 func _on_healthpickup_area_entered(area: Area2D):
-	if area.name == "Healthpickup" && currentHealth < maxHealth && currentHealth > 0:
-		currentHealth += 3
-		healthChanged.emit(currentHealth)
-	elif area.name == "Healthpickup" && currentHealth == maxHealth && currentHealth > 0:
+	if area.name == "Healthpickup" && currentHealth > 0:
 		Hppickups += 1
 		if Hppickups > 9:
 			Hppickups = 9
@@ -154,3 +157,37 @@ func _on_playerhitbox_area_entered(area: Area2D):
 func _on_swordpickuptimer_timeout():
 	showswordpickup = false
 	defaultsword.visible = false
+	
+func _on_swordhitboxdefault_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		camera.trigger_shake(8, 10)
+		framefreeze(0.10, 0.30)
+		
+func framefreeze(timeScale, duration):
+	Engine.time_scale = timeScale
+	await get_tree().create_timer(duration * timeScale).timeout
+	Engine.time_scale = 1.0
+func _on_playerhitbox_smslime_entered(area: Area2D):
+		if area.name == "smallslimearea":
+			currentHealth -= 1
+			camera.trigger_shake(5, 5)
+			framefreeze(0.10, 0.3)
+			if currentHealth <= 0:
+				currentHealth = 0
+				deathtimer.start()
+			
+			 
+			healthChanged.emit(currentHealth)
+
+
+func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
+		if area.name == "medslimearea":
+			currentHealth -= 2
+			camera.trigger_shake(10, 110)
+			framefreeze(0.07, 0.5)
+			if currentHealth <= 0:
+				currentHealth = 0
+				deathtimer.start()
+			
+			 
+			healthChanged.emit(currentHealth)

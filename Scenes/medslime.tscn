@@ -80,7 +80,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("enemyarea/CollisionShape2D:disabled")
+tracks/6/path = NodePath("medslimearea/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -180,7 +180,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("enemyarea/CollisionShape2D:disabled")
+tracks/6/path = NodePath("medslimearea/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -272,7 +272,6 @@ height = 166.0
 [node name="slime" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_gqgd7")
-SPEED = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.284, 0.284)
@@ -287,15 +286,15 @@ libraries = {
 autoplay = "idle"
 speed_scale = 0.5
 
-[node name="enemyarea" type="Area2D" parent="."]
+[node name="medslimearea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemyarea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="medslimearea"]
 position = Vector2(1, 22.5)
 rotation = -1.56683
 shape = SubResource("CapsuleShape2D_j5b02")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
