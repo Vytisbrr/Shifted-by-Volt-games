@@ -75,7 +75,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.284, 0.284)]
+"values": [Vector2(0.426, 0.426)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -175,7 +175,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.266667, 0.3, 0.333333, 0.366667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.284, 0.284), Vector2(0.2, 0.2), Vector2(0.15, 0.15), Vector2(0.05, 0.05), Vector2(0, 0)]
+"values": [Vector2(0.426, 0.426), Vector2(0.3, 0.3), Vector2(0.225, 0.225), Vector2(0.075, 0.075), Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -266,15 +266,14 @@ radius = 55.4956
 height = 178.018
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ihjg"]
-radius = 49.0
-height = 166.0
+radius = 49.646
+height = 160.181
 
 [node name="slime" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_gqgd7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.284, 0.284)
+scale = Vector2(0.426, 0.426)
 texture = ExtResource("2_kmxn1")
 hframes = 3
 vframes = 3
@@ -289,30 +288,36 @@ speed_scale = 0.5
 [node name="medslimearea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="medslimearea"]
-position = Vector2(1, 22.5)
-rotation = -1.56683
+position = Vector2(1, 35.5)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_j5b02")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, 13)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(1, 22.5)
-rotation = -1.56683
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_j5b02")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 22.5)
+position = Vector2(2, 35.5)
 rotation = -1.58919
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_5ihjg")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-2, -1)
+position = Vector2(1, 35)
+scale = Vector2(1.5, 1)
 target_position = Vector2(-117, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(-2, -1)
+position = Vector2(1, 35)
+scale = Vector2(1.5, 1)
 target_position = Vector2(122, 0)
 
 [node name="deathtimer" type="Timer" parent="."]
