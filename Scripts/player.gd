@@ -26,7 +26,13 @@ var dashcoolingdown = false
 var isattacking = false
 var was_grounded = true
 var bouncing = false
+var has_sword = false
+var showswordpickup = false
+@onready var defaultsword = $Defaultsword
+@onready var swordpickuptimer = $swordpickuptimer
 func _physics_process(delta):
+	if showswordpickup == false:
+		defaultsword.visible = false
 	displayhppickups()
 	if Input.is_action_just_pressed("Dash") && isdashing == false && dashcoolingdown == false:
 		dashtimer.start()
@@ -41,7 +47,7 @@ func _physics_process(delta):
 			velocity.y = 4500
 	if Input.is_action_just_pressed("jump"):
 		jump()
-	if Input.is_action_just_pressed("attack") && !isattacking:
+	if Input.is_action_just_pressed("attack") && !isattacking && has_sword:
 		isattacking = true
 		ap.play("Sword swing")
 	var horizontal_direction = Input.get_axis("move left","move right")
@@ -121,14 +127,14 @@ func _on_dashcooldowntimer_timeout():
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0 && Hppickups > 0:
-		currentHealth += 1
+		currentHealth += 3
 		Hppickups -= 1
 		healthChanged.emit(currentHealth)
 
 
 func _on_healthpickup_area_entered(area: Area2D):
 	if area.name == "Healthpickup" && currentHealth < maxHealth && currentHealth > 0:
-		currentHealth += 1
+		currentHealth += 3
 		healthChanged.emit(currentHealth)
 	elif area.name == "Healthpickup" && currentHealth == maxHealth && currentHealth > 0:
 		Hppickups += 1
@@ -139,3 +145,12 @@ func displayhppickups():
 func _on_animation_player_animation_finished(anim_name: StringName):
 	if anim_name == "Sword swing":
 		isattacking = false
+func _on_playerhitbox_area_entered(area: Area2D):
+	if area.name == "swordarea":
+		has_sword = true
+		showswordpickup = true
+		defaultsword.visible = true
+		swordpickuptimer.start()
+func _on_swordpickuptimer_timeout():
+	showswordpickup = false
+	defaultsword.visible = false
