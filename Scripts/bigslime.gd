@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 200
 @export var gravity = 20
-@export var hp = 3
+@export var hp = 10
 var direction = 1
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
