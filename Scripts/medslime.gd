@@ -10,7 +10,7 @@ var direction = 1
 
 
 @onready var ap =  $AnimationPlayer
-@onready var area = $enemyarea
+@onready var area = $medslimearea
 @onready var deathtimer = $deathtimer
 @onready var raycastfall = $RayCastfall
 var immunity = false

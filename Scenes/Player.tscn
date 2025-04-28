@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="2_jo4j8"]
 [ext_resource type="Texture2D" uid="uid://bdmut3irs2pu0" path="res://Anim/Player animations/wrigg/Wrigg_JumpwHands-Sheet.png" id="3_rh1g0"]
+[ext_resource type="Texture2D" uid="uid://fg2voanpej4p" path="res://Art/New Piskel (7).png" id="4_hvv5m"]
 [ext_resource type="Texture2D" uid="uid://cxsd5npfeyabb" path="res://Anim/Player animations/wrigg/Wrigg_Idle-Sheet.png" id="4_tulo4"]
 [ext_resource type="Texture2D" uid="uid://djp6pgrdlg7gq" path="res://Anim/Player animations/wrigg/Wrigg_SwordSwing.png" id="5_lrvm8"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
 [ext_resource type="Texture2D" uid="uid://d4cnqneky3711" path="res://Anim/Player animations/wrigg/Wrigg_Walk-Sheet.png" id="6_8ej24"]
 [ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
 [ext_resource type="Texture2D" uid="uid://dbjkdphm3yqoo" path="res://health/unnamed (2).png" id="7_ygmv1"]
-[ext_resource type="Texture2D" uid="uid://chnj4cpjfo44k" path="res://Art/Defaultsword.png" id="9_58d1q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -392,7 +392,6 @@ script = ExtResource("1_d3vyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-14.5, 2)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wt4lo")
 metadata/_edit_group_ = true
 
@@ -424,7 +423,7 @@ disabled = true
 [node name="Defaultsword" type="Sprite2D" parent="."]
 position = Vector2(-7, -177)
 scale = Vector2(5, 5)
-texture = ExtResource("9_58d1q")
+texture = ExtResource("4_hvv5m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -514,11 +513,11 @@ wait_time = 0.1
 [connection signal="area_entered" from="wrigg/Swordhitboxdefault" to="." method="_on_swordhitboxdefault_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]

@@ -12,10 +12,10 @@ func updateanimations(hppickup):
 
 func _on_healthpickup_area_entered(area: Area2D):
 	if area.name == "playerhitbox":
-		item.call_deferred("is_disabled", true)
 		hide()
+		Isdisabledhppickup.isdisabled = true
 		respawntimer.start()
 
 func _on_respawn_timeout():
-	item.call_deferred("is_disabled", false)
+	Isdisabledhppickup.isdisabled = false
 	show()

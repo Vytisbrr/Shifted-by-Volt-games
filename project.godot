@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/world.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Isdisabledhppickup="*res://Scripts/isdisabledhppickup.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -22,6 +26,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 camera=""
+healthpickup=""
 
 [input]
 

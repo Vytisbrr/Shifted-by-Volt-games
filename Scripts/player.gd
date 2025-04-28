@@ -139,7 +139,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_healthpickup_area_entered(area: Area2D):
-	if area.name == "Healthpickup" && currentHealth > 0:
+	if area.name == "Healthpickup" && currentHealth > 0 && Isdisabledhppickup.isdisabled == false:
 		Hppickups += 1
 		if Hppickups > 9:
 			Hppickups = 9
