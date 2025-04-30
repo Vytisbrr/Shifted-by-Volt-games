@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bdmut3irs2pu0" path="res://Anim/Player animations/wrigg/Wrigg_JumpwHands-Sheet.png" id="3_rh1g0"]
 [ext_resource type="Texture2D" uid="uid://fg2voanpej4p" path="res://Art/New Piskel (7).png" id="4_hvv5m"]
 [ext_resource type="Texture2D" uid="uid://cxsd5npfeyabb" path="res://Anim/Player animations/wrigg/Wrigg_Idle-Sheet.png" id="4_tulo4"]
-[ext_resource type="Texture2D" uid="uid://djp6pgrdlg7gq" path="res://Anim/Player animations/wrigg/Wrigg_SwordSwing.png" id="5_lrvm8"]
 [ext_resource type="PackedScene" uid="uid://677rib80d2io" path="res://ui/hearts.tscn" id="6_1y5o0"]
 [ext_resource type="Texture2D" uid="uid://d4cnqneky3711" path="res://Anim/Player animations/wrigg/Wrigg_Walk-Sheet.png" id="6_8ej24"]
+[ext_resource type="Texture2D" uid="uid://ck676ivc3dp8x" path="res://Anim/Player animations/wrigg/unnamed (3).png" id="6_k0f31"]
 [ext_resource type="PackedScene" uid="uid://bqj0s2xcolqj3" path="res://ui/pause_menu.tscn" id="7_wh3cp"]
 [ext_resource type="Texture2D" uid="uid://dbjkdphm3yqoo" path="res://health/unnamed (2).png" id="7_ygmv1"]
 
@@ -131,69 +131,81 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("wrigg:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.25, -4.5)]
+}
 
 [sub_resource type="Animation" id="Animation_po35h"]
 resource_name = "Sword swing"
-length = 0.2
+length = 0.21
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("wrigg:texture")
+tracks/0/path = NodePath("wrigg/Swordhitboxdefault/CollisionPolygon2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("5_lrvm8")]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("wrigg:hframes")
+tracks/1/path = NodePath("wrigg:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [ExtResource("6_k0f31")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("wrigg:vframes")
+tracks/2/path = NodePath("wrigg:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [7]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("wrigg:frame")
+tracks/3/path = NodePath("wrigg:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("wrigg/Swordhitboxdefault/CollisionPolygon2D:disabled")
+tracks/4/path = NodePath("wrigg:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1, 0.166667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 
 [sub_resource type="Animation" id="Animation_a7ybx"]
@@ -417,7 +429,8 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wrigg/Swordhitboxdefault"]
-polygon = PackedVector2Array(-22, 31, -43, 29, -48, 43, -23, 85, 20, 87, 53, 75, 81, 65, 103, 2, 103, -70, 67, -112, 54, -123, 38, -120, 30, -106, 31, -59, 54, -30, 54, 9, 34, 31, -10, 36)
+position = Vector2(-11, 0)
+polygon = PackedVector2Array(-21, 26.9999, -43, 26.9999, -48, 43, -28, 89, 15, 94, 53.0001, 85, 81.0001, 70, 114, 3.99994, 106, -77.0001, 73.0001, -119, 55.0001, -125, 34.0001, -124, 24.0001, -107, 26.0001, -59.0001, 49.0001, -28.0001, 46.0001, 4.99994, 27.0001, 28.9999, -9, 30.9999)
 disabled = true
 
 [node name="Defaultsword" type="Sprite2D" parent="."]
@@ -514,9 +527,9 @@ wait_time = 0.1
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]

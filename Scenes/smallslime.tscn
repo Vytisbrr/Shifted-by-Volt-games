@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkrrpdydkuxny"]
+[gd_scene load_steps=10 format=3 uid="uid://dkrrpdydkuxny"]
 
 [ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="1_n1k58"]
 [ext_resource type="Script" path="res://Scripts/slime.gd" id="1_o52ln"]
@@ -84,18 +84,6 @@ tracks/6/path = NodePath("smallslimearea/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hurtbox/CollisionShape2D:disabled")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -189,18 +177,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hurtbox/CollisionShape2D:disabled")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_ybidx"]
 resource_name = "idle"
@@ -262,8 +238,12 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5b02"]
-radius = 55.4956
-height = 178.018
+radius = 53.4797
+height = 185.995
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpl7e"]
+radius = 63.0
+height = 212.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ihjg"]
 radius = 49.0
@@ -296,10 +276,10 @@ shape = SubResource("CapsuleShape2D_j5b02")
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 22.5)
-rotation = -1.56683
-shape = SubResource("CapsuleShape2D_j5b02")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 23)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_bpl7e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 22.5)

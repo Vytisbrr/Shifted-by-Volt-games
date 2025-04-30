@@ -53,11 +53,14 @@ func _physics_process(delta):
 		ap.play("Sword swing")
 	var horizontal_direction = Input.get_axis("move left","move right")
 	velocity.x = speed * horizontal_direction
-	
 	if horizontal_direction != 0:
 		sprite.flip_h = (horizontal_direction == -1)
-		swordhitboxdefault.scale.x = -1
-	
+	if horizontal_direction == -1:
+		swordhitboxdefault.scale.x = -1.616
+		swordhitboxdefault.position.x = -54.646
+	if horizontal_direction == 1:
+		swordhitboxdefault.scale.x = 1.616
+		swordhitboxdefault.position.x = -24.646
 	move_and_slide()
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		can_coyote_jump = true
