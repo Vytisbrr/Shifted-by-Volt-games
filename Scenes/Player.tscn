@@ -515,12 +515,6 @@ wait_time = 0.1
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
->>>>>>> Stashed changes
 =======
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
