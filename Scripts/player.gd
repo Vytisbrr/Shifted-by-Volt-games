@@ -1,15 +1,16 @@
 extends CharacterBody2D
 
 signal healthChanged
+@onready var coffin = $coffin
+@onready var heart = $heart
 @onready var hptext = $Label
 @onready var Hppickups = 0
 @export var normalspeed = 1000
 @export var gravity = 35
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
-@export var maxHealth = 10
+@export var maxHealth = 100
 @onready var currentHealth: int = maxHealth
-@onready var HeartContainer = $CanvasLayer/Hearts
 @onready var ap = $AnimationPlayer
 @onready var sprite = $wrigg
 @onready var coyote_timer = $coyotetimer
@@ -32,6 +33,12 @@ var showswordpickup = false
 @onready var swordpickuptimer = $swordpickuptimer
 @onready var camera: Camera2D = get_tree().get_first_node_in_group("camera")
 func _physics_process(delta):
+	if currentHealth > 0:
+		heart.show()
+		coffin.hide()
+	else:
+		heart.hide()
+		coffin.show()
 	if showswordpickup == false:
 		defaultsword.visible = false
 	displayhppickups()
@@ -108,11 +115,7 @@ func _on_hitbox_area_entered(area: Area2D):
 			
 			 
 		healthChanged.emit(currentHealth)
-func _ready():
-	HeartContainer.setmaxHearts(maxHealth)
-	HeartContainer.updateHearts(currentHealth)
-	healthChanged.connect(HeartContainer.updateHearts)
-	
+
 
 
 func _on_deathtimer_timeout() -> void:
@@ -134,7 +137,7 @@ func _on_dashcooldowntimer_timeout():
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Heal") && currentHealth != maxHealth && currentHealth > 0 && Hppickups > 0:
-		currentHealth += 3
+		currentHealth += 30
 		if currentHealth > maxHealth:
 			currentHealth = maxHealth
 		Hppickups -= 1
@@ -172,7 +175,7 @@ func framefreeze(timeScale, duration):
 	Engine.time_scale = 1.0
 func _on_playerhitbox_smslime_entered(area: Area2D):
 		if area.name == "smallslimearea":
-			currentHealth -= 1
+			currentHealth -= 5
 			camera.trigger_shake(5, 5)
 			framefreeze(0.10, 0.3)
 			if currentHealth <= 0:
@@ -185,7 +188,7 @@ func _on_playerhitbox_smslime_entered(area: Area2D):
 
 func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 		if area.name == "medslimearea":
-			currentHealth -= 2
+			currentHealth -= 15
 			camera.trigger_shake(10, 110)
 			framefreeze(0.07, 0.5)
 			if currentHealth <= 0:
@@ -194,33 +197,3 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			
 			 
 			healthChanged.emit(currentHealth)
-
-var save_data = {
-	"player_position": { "x": 5509, "y": 170 } 
-}
-
-func save():
-	if Input.is_action_just_pressed("Save"):
-		print("you pressed save")
-	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
-	if file:
-		file.close()
-		print("Game saved.")
-
-func load():
-	("you pressed load")
-	if FileAccess.file_exists("user://save_game.dat"):
-		var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
-		var data_as_text = file.get_line()
-		file.close()
-		
-		var loaded_data = JSON.parse_string(data_as_text)
-		if loaded_data != null:
-			save_data = loaded_data
-			print("Game loaded:", save_data)
-	else:
-		print("Save file not found.")
-	
-	
-#	else:
-#	print("Failed to parse save.")
