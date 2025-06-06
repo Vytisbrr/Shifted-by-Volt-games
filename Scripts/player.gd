@@ -194,3 +194,33 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			
 			 
 			healthChanged.emit(currentHealth)
+
+var save_data = {
+	"player_position": { "x": 5509, "y": 170 } 
+}
+
+func save():
+	if Input.is_action_just_pressed("Save"):
+		print("you pressed save")
+	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+	if file:
+		file.close()
+		print("Game saved.")
+
+func load():
+	("you pressed load")
+	if FileAccess.file_exists("user://save_game.dat"):
+		var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+		var data_as_text = file.get_line()
+		file.close()
+		
+		var loaded_data = JSON.parse_string(data_as_text)
+		if loaded_data != null:
+			save_data = loaded_data
+			print("Game loaded:", save_data)
+	else:
+		print("Save file not found.")
+	
+	
+#	else:
+#	print("Failed to parse save.")
