@@ -16,6 +16,25 @@ var immunity = false
 var dead = false
 var was_on_floor = true
 var was_not_on_floor = false
+func on_save_game(saved_data:Array[SavedData]):
+	if dead:
+		return
+	var my_data = SavedSlimeData.new()
+	my_data.position = global_position
+	my_data.scene_path = scene_file_path
+	my_data.direction = direction
+	my_data.health = hp
+	
+	saved_data.append(my_data)
+func on_before_load_game():
+	if is_instance_valid(self):
+		get_parent().remove_child(self)
+		queue_free()
+func on_load_game(saved_data:SavedData):
+	var my_data:SavedSlimeData = saved_data as SavedSlimeData
+	global_position = saved_data.position
+	direction = my_data.direction
+	hp = my_data.health
 func _physics_process(delta):
 	move_and_slide()
 	if !is_on_floor():

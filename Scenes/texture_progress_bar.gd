@@ -1,10 +1,24 @@
 extends TextureProgressBar
 @onready var player = get_parent()
-# Called when the node enters the scene tree for the first time.
-
+@onready var dmgbartimer = $"../dmgtimer"
+@onready var dmgbar = $"../dmgbar"
+var dmgbaract = false
+func _on_value_changed(value: float):
+	dmgbaract = true
+	if dmgbaract == true:
+		dmgbar.value = dmgbar.value
+	dmgbartimer.start()
 func _process(delta):
+	var flashhealth = player.currentHealth
 	max_value = player.maxHealth
 	value = player.currentHealth
+	value_changed
+	dmgbar.max_value = player.maxHealth
+	if dmgbaract == false:
+		dmgbar.value = player.currentHealth
+
+func _on_dmgtimer_timeout():
+	dmgbaract = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	

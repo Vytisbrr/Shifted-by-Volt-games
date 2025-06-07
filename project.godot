@@ -27,8 +27,8 @@ window/stretch/mode="canvas_items"
 
 camera=""
 healthpickup=""
-slime=""
 mediumslime=""
+game_events=""
 
 [input]
 

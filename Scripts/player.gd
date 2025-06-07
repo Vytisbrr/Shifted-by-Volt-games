@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal healthChanged
+signal tookdmg
 @onready var coffin = $coffin
 @onready var heart = $heart
 @onready var hptext = $Label
@@ -36,6 +37,7 @@ var showswordpickup = false
 var backwardswalk = false
 var mouseside = 0
 var speed = 1000
+var flashhealth = currentHealth
 func _physics_process(delta):
 	if currentHealth > 0:
 		heart.show()
@@ -140,6 +142,7 @@ func _on_hitbox_area_entered(area: Area2D):
 			
 			 
 		healthChanged.emit(currentHealth)
+		tookdmg
 
 
 
@@ -209,6 +212,7 @@ func _on_playerhitbox_smslime_entered(area: Area2D):
 			
 			 
 			healthChanged.emit(currentHealth)
+			tookdmg
 
 
 func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
@@ -222,3 +226,4 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			
 			 
 			healthChanged.emit(currentHealth)
+			tookdmg

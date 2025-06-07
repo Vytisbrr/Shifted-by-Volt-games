@@ -9,8 +9,11 @@ func save_game():
 	saved_game.player_health = player.currentHealth
 	saved_game.player_potions = player.Hppickups
 	saved_game.player_position = player.global_position
-	for slime in get_tree().get_nodes_in_group("slime"):
-		saved_game.small_slime_positions.append(slime.global_position)
+	var saved_data:Array[SavedData] = []
+	get_tree().call_group("game_events", "on_save_game", saved_data)
+	saved_game.saved_data = saved_data
+	for slime in get_tree().get_nodes_in_group("mediumslime"):
+		saved_game.medium_slime_positions.append(slime.global_position)
 	ResourceSaver.save(saved_game, "user://save.tres")
 func load_game():
 	var saved_game:SavedGame = load("user://save.tres")
@@ -19,15 +22,15 @@ func load_game():
 	player.Hppickups = saved_game.player_potions
 	player.currentHealth = saved_game.player_health
 	
-	var existing_small_slimes_to_delete = get_tree().get_nodes_in_group("slime").duplicate()
 	
-	for slime in existing_small_slimes_to_delete:
-		if is_instance_valid(slime):
-			slime.queue_free()
+	get_tree().call_group("game_events", "on_before_load_game")
 	
 	await get_tree().process_frame
-	for position in saved_game.small_slime_positions:
-		var smallslimescene = preload("res://Scenes/smallslime.tscn")
-		var new_small_slime = smallslimescene.instantiate()
-		worldroot.add_child(new_small_slime)
-		new_small_slime.global_position = position
+	for item in saved_game.saved_data:
+		var scene = load(item.scene_path) as PackedScene
+		var restored_node = scene.instantiate()
+		worldroot.add_child(restored_node)
+		
+		if restored_node.has_method("on_load_game"):
+			restored_node.on_load_game(item)
+		

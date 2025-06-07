@@ -249,7 +249,7 @@ height = 212.0
 radius = 49.0
 height = 166.0
 
-[node name="slime" type="CharacterBody2D" groups=["slime"]]
+[node name="slime" type="CharacterBody2D" groups=["game_events", "slime"]]
 script = ExtResource("1_o52ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
