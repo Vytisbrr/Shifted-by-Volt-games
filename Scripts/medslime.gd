@@ -8,7 +8,6 @@ var direction = 1
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 
-
 @onready var ap =  $AnimationPlayer
 @onready var area = $medslimearea
 @onready var deathtimer = $deathtimer

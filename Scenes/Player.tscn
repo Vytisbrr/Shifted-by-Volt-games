@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=28 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="2_jo4j8"]
@@ -212,6 +212,59 @@ tracks/4/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
 
+[sub_resource type="Animation" id="Animation_7f3s7"]
+resource_name = "backwardswalk"
+length = 0.225
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wrigg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wrigg:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wrigg:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("wrigg:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("6_8ej24")]
+}
+
 [sub_resource type="Animation" id="Animation_a7ybx"]
 resource_name = "falling"
 length = 0.025
@@ -389,6 +442,7 @@ _data = {
 "Jump": SubResource("Animation_lon5p"),
 "RESET": SubResource("Animation_dbkr2"),
 "Sword swing": SubResource("Animation_po35h"),
+"backwardswalk": SubResource("Animation_7f3s7"),
 "falling": SubResource("Animation_a7ybx"),
 "idle": SubResource("Animation_b7dj5"),
 "walk": SubResource("Animation_xfcij")
@@ -403,7 +457,6 @@ size = Vector2(94, 238)
 default_font_size = 200
 
 [node name="Wrigg" type="CharacterBody2D"]
-position = Vector2(1158, 619)
 script = ExtResource("1_d3vyt")
 
 [node name="heart" type="Sprite2D" parent="."]
@@ -432,6 +485,7 @@ texture_progress = ExtResource("9_0kpxa")
 script = ExtResource("12_mrij1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-14.5, 2)
 shape = SubResource("RectangleShape2D_wt4lo")
 metadata/_edit_group_ = true
@@ -452,6 +506,7 @@ frame = 3
 metadata/_edit_group_ = true
 
 [node name="Swordhitboxdefault" type="Area2D" parent="wrigg"]
+visible = false
 position = Vector2(-24.6465, 5.97516)
 scale = Vector2(1.61616, 1.3278)
 collision_layer = 2
@@ -479,6 +534,7 @@ wait_time = 0.12
 one_shot = true
 
 [node name="playerhitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerhitbox"]
 position = Vector2(-10, -3)
@@ -534,6 +590,7 @@ text = "0"
 horizontal_alignment = 1
 
 [node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
+visible = false
 offset_left = -642.0
 offset_top = -585.0
 offset_right = 656.0
@@ -549,10 +606,10 @@ wait_time = 0.1
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]

@@ -6,6 +6,7 @@ signal healthChanged
 @onready var hptext = $Label
 @onready var Hppickups = 0
 @export var normalspeed = 1000
+@export var attackingspeed = 200
 @export var gravity = 35
 @export var jump_force = 900
 @onready var deathtimer = $Deathtimer
@@ -32,6 +33,9 @@ var showswordpickup = false
 @onready var defaultsword = $Defaultsword
 @onready var swordpickuptimer = $swordpickuptimer
 @onready var camera: Camera2D = get_tree().get_first_node_in_group("camera")
+var backwardswalk = false
+var mouseside = 0
+var speed = 1000
 func _physics_process(delta):
 	if currentHealth > 0:
 		heart.show()
@@ -47,7 +51,12 @@ func _physics_process(delta):
 		isdashing = true
 		dashcoolingdown = true
 		dashcooldowntimer.start()
-	var speed = dashspeed if isdashing == true else normalspeed
+	if isdashing == true && isattacking == false:
+		speed = dashspeed
+	elif isattacking == true:
+		speed = attackingspeed
+	elif isattacking == false && isdashing == false:
+		speed = normalspeed
 	var was_on_floor = is_on_floor()
 	if !is_on_floor() && (can_coyote_jump == false):
 		velocity.y += gravity
@@ -60,12 +69,23 @@ func _physics_process(delta):
 		ap.play("Sword swing")
 	var horizontal_direction = Input.get_axis("move left","move right")
 	velocity.x = speed * horizontal_direction
-	if horizontal_direction != 0:
-		sprite.flip_h = (horizontal_direction == -1)
-	if horizontal_direction == -1:
+	var mouse_position = get_viewport().get_mouse_position()
+	var screen = get_viewport().get_size()
+	var sprite_center = screen/2
+	if mouseside != horizontal_direction:
+		backwardswalk = true
+	else:
+		backwardswalk = false
+	if mouse_position.x > sprite_center.x:
+		mouseside = 1
+		sprite.flip_h = false
+	elif mouse_position.x < sprite_center.x:
+		mouseside = -1
+		sprite.flip_h = true
+	if mouse_position.x < sprite_center.x:
 		swordhitboxdefault.scale.x = -1.616
 		swordhitboxdefault.position.x = -54.646
-	if horizontal_direction == 1:
+	if mouse_position.x > sprite_center.x:
 		swordhitboxdefault.scale.x = 1.616
 		swordhitboxdefault.position.x = -24.646
 	move_and_slide()
@@ -79,11 +99,16 @@ func _physics_process(delta):
 			jump()
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
+	var mouse_position = get_viewport().get_mouse_position()
+	var screen = get_viewport().get_size()
+	var sprite_center = screen/2
 	if is_on_floor() && isattacking == false:
 		if horizotal_direction == 0 && velocity.y == 0:
 			ap.play("idle")
-		else:
+		elif velocity.y == 0 && horizotal_direction != 0 && backwardswalk == false:
 			ap.play("walk")
+		elif velocity.y == 0 && horizotal_direction != 0 && backwardswalk == true:
+			ap.play("backwardswalk")
 	else:
 		if velocity.y < 0 && isattacking == false:
 			ap.play("Jump")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://e10r22ttlm67"]
+[gd_scene load_steps=24 format=4 uid="uid://e10r22ttlm67"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_jtd4d"]
 [ext_resource type="Texture2D" uid="uid://b2046l5rad5e3" path="res://bg/New Piskel (3).png" id="3_pj56p"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/sm_slimespwanpoint.gd" id="10_qrp50"]
 [ext_resource type="PackedScene" uid="uid://ctguba551bmjb" path="res://Scenes/sword.tscn" id="11_jdnhd"]
 [ext_resource type="Script" path="res://Scripts/medslimespawnpoint.gd" id="12_7pw1n"]
+[ext_resource type="Script" path="res://savingres/save.gd" id="14_7tdii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mafyp"]
 texture = ExtResource("3_pj56p")
@@ -377,7 +378,7 @@ tile_set = SubResource("TileSet_2gve2")
 
 [node name="Wrigg" parent="." instance=ExtResource("5_r1bfq")]
 z_index = 1
-position = Vector2(-5493, -219)
+position = Vector2(-5492, -213)
 
 [node name="Killzone" parent="." instance=ExtResource("5_sr1g5")]
 z_index = 1
@@ -450,15 +451,6 @@ position = Vector2(-117, 5406)
 [node name="Node2D16" parent="." instance=ExtResource("7_bjb4p")]
 position = Vector2(8642, 5300)
 
-[node name="slime" parent="." instance=ExtResource("5_deq7f")]
-position = Vector2(-4607, 1268)
-
-[node name="slime3" parent="." instance=ExtResource("8_4ckwl")]
-position = Vector2(838, 376)
-
-[node name="slime4" parent="." instance=ExtResource("8_4ckwl")]
-position = Vector2(-5271, 1228)
-
 [node name="smSlimespwanpoint" type="Marker2D" parent="."]
 position = Vector2(-865, -160)
 script = ExtResource("10_qrp50")
@@ -499,8 +491,31 @@ medslime = ExtResource("8_4ckwl")
 [node name="medslimedelay" type="Timer" parent="."]
 wait_time = 25.0
 
-[node name="slime2" parent="." instance=ExtResource("8_4ckwl")]
-position = Vector2(-4542, -210)
+[node name="savingnode" type="Node" parent="."]
+script = ExtResource("14_7tdii")
+
+[node name="worldroot" type="Node2D" parent="."]
+
+[node name="slime" parent="worldroot" instance=ExtResource("5_deq7f")]
+position = Vector2(-4607, 1268)
+
+[node name="slime3" parent="worldroot" instance=ExtResource("8_4ckwl")]
+position = Vector2(838, 376)
+
+[node name="slime4" parent="worldroot" instance=ExtResource("8_4ckwl")]
+position = Vector2(-5271, 1228)
+
+[node name="slime2" parent="worldroot" instance=ExtResource("8_4ckwl")]
+position = Vector2(-4858, -218)
+
+[node name="slime5" parent="worldroot" instance=ExtResource("5_deq7f")]
+position = Vector2(-5797, -170)
+
+[node name="slime6" parent="worldroot" instance=ExtResource("5_deq7f")]
+position = Vector2(-3821, -168)
+
+[node name="medslime" parent="worldroot" instance=ExtResource("8_4ckwl")]
+position = Vector2(-3197, -210)
 
 [connection signal="timeout" from="smslimedelay" to="smSlimespwanpoint" method="_on_smslimedelay_timeout"]
 [connection signal="timeout" from="medslimedelay" to="medslimespawnpoint" method="_on_medslimedelay_timeout"]

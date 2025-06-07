@@ -249,7 +249,7 @@ height = 306.0
 radius = 49.646
 height = 160.181
 
-[node name="slime" type="CharacterBody2D"]
+[node name="medslime" type="CharacterBody2D" groups=["mediumslime"]]
 script = ExtResource("1_gqgd7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
