@@ -20,6 +20,9 @@ var numoftimessamedir: int = 0
 var last_jump_direction: float = 0.0
 var flipsprite:bool
 var dead = false
+@onready var vision = $vision
+var distancetoplayer:Vector2
+var player
 func _ready():
 	if untiljumptimer:
 		untiljumptimer.timeout.connect(_on_untiljumptimer_timeout)

@@ -458,7 +458,7 @@ size = Vector2(94, 238)
 [sub_resource type="Theme" id="Theme_a03oe"]
 default_font_size = 200
 
-[node name="Wrigg" type="CharacterBody2D"]
+[node name="Wrigg" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_d3vyt")
 
 [node name="heart" type="Sprite2D" parent="."]
@@ -626,9 +626,9 @@ wait_time = 0.4
 [connection signal="area_entered" from="wrigg/Swordhitboxdefault" to="." method="_on_swordhitboxdefault_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
