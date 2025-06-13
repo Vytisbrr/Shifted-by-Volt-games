@@ -192,8 +192,8 @@ func _on_swordpickuptimer_timeout():
 	showswordpickup = false
 	defaultsword.visible = false
 	
-func _on_swordhitboxdefault_area_entered(area: Area2D) -> void:
-	if area.name == "Hurtbox":
+func _on_swordhitboxdefault_area_entered(area: Area2D):
+	if area.name == "hurtbox":
 		camera.trigger_shake(8, 10)
 		framefreeze(0.10, 0.30)
 		

@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwdwh7ehpk4j4"]
+[gd_scene load_steps=10 format=3 uid="uid://dkrrpdydkuxny"]
 
-[ext_resource type="Script" path="res://Scripts/medslime.gd" id="1_gqgd7"]
-[ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="2_kmxn1"]
+[ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="1_n1k58"]
+[ext_resource type="Script" path="res://Scripts/slime.gd" id="1_o52ln"]
 
 [sub_resource type="Animation" id="Animation_vma26"]
 length = 0.001
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_kmxn1")]
+"values": [ExtResource("1_n1k58")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -75,12 +75,12 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.426, 0.426)]
+"values": [Vector2(0.284, 0.284)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("medslimearea/CollisionShape2D:disabled")
+tracks/6/path = NodePath("smallslimearea/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -103,7 +103,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_kmxn1")]
+"values": [ExtResource("1_n1k58")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -163,12 +163,12 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.266667, 0.3, 0.333333, 0.366667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.426, 0.426), Vector2(0.3, 0.3), Vector2(0.225, 0.225), Vector2(0.075, 0.075), Vector2(0, 0)]
+"values": [Vector2(0.284, 0.284), Vector2(0.2, 0.2), Vector2(0.15, 0.15), Vector2(0.05, 0.05), Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("medslimearea/CollisionShape2D:disabled")
+tracks/6/path = NodePath("smallslimearea/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -191,7 +191,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_kmxn1")]
+"values": [ExtResource("1_n1k58")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -238,23 +238,23 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5b02"]
-radius = 55.4956
-height = 178.018
+radius = 53.4797
+height = 185.995
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ru8jx"]
-radius = 95.0
-height = 306.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpl7e"]
+radius = 63.0
+height = 212.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ihjg"]
-radius = 49.646
-height = 160.181
+radius = 49.0
+height = 166.0
 
-[node name="medslime" type="CharacterBody2D" groups=["game_events"]]
-script = ExtResource("1_gqgd7")
+[node name="slime" type="CharacterBody2D" groups=["game_events", "slime"]]
+script = ExtResource("1_o52ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.426, 0.426)
-texture = ExtResource("2_kmxn1")
+scale = Vector2(0.284, 0.284)
+texture = ExtResource("1_n1k58")
 hframes = 3
 vframes = 3
 
@@ -265,38 +265,33 @@ libraries = {
 autoplay = "idle"
 speed_scale = 0.5
 
-[node name="medslimearea" type="Area2D" parent="."]
+[node name="smallslimearea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="medslimearea"]
-position = Vector2(1, 35.5)
-rotation = -1.5708
-scale = Vector2(1.5, 1.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="smallslimearea"]
+position = Vector2(1, 22.5)
+rotation = -1.56683
 shape = SubResource("CapsuleShape2D_j5b02")
 
-[node name="Hurtbox" type="Area2D" parent="."]
-position = Vector2(0, 13)
+[node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 22)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(1, 23)
 rotation = -1.5708
-shape = SubResource("CapsuleShape2D_ru8jx")
+shape = SubResource("CapsuleShape2D_bpl7e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 35.5)
+position = Vector2(2, 22.5)
 rotation = -1.58919
-scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_5ihjg")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(1, 35)
-scale = Vector2(1.5, 1)
+position = Vector2(-2, -1)
 target_position = Vector2(-117, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(1, 35)
-scale = Vector2(1.5, 1)
+position = Vector2(-2, -1)
 target_position = Vector2(122, 0)
 
 [node name="deathtimer" type="Timer" parent="."]
@@ -306,18 +301,18 @@ wait_time = 0.25
 
 [node name="RayCastfall" type="RayCast2D" parent="."]
 position = Vector2(0, 61)
-scale = Vector2(0.75, 0.71)
+scale = Vector2(1, 1.04)
 target_position = Vector2(0, 75)
 
 [node name="RayCastfall" type="RayCast2D" parent="RayCastfall"]
-position = Vector2(-81.3334, 0)
+position = Vector2(-60, 0)
 target_position = Vector2(0, 75)
 
 [node name="RayCastfall" type="RayCast2D" parent="RayCastfall/RayCastfall"]
-position = Vector2(163.533, 0)
+position = Vector2(123, 0)
 target_position = Vector2(0, 75)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="bouncetimer" to="." method="_on_bouncetimer_timeout"]

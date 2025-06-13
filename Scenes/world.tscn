@@ -1,19 +1,20 @@
-[gd_scene load_steps=24 format=4 uid="uid://e10r22ttlm67"]
+[gd_scene load_steps=25 format=4 uid="uid://e10r22ttlm67"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_jtd4d"]
 [ext_resource type="Texture2D" uid="uid://b2046l5rad5e3" path="res://bg/New Piskel (3).png" id="3_pj56p"]
 [ext_resource type="Texture2D" uid="uid://blw6acmo7vgbl" path="res://tilemap/DirtTilemap-Shifted.png" id="4_f1pqs"]
-[ext_resource type="PackedScene" uid="uid://dkrrpdydkuxny" path="res://Scenes/smallslime.tscn" id="5_deq7f"]
+[ext_resource type="PackedScene" uid="uid://dkrrpdydkuxny" path="res://Scenes/enemies/smallslime.tscn" id="5_deq7f"]
 [ext_resource type="PackedScene" uid="uid://th02mvw6u4ur" path="res://Scenes/Player.tscn" id="5_r1bfq"]
 [ext_resource type="PackedScene" uid="uid://c0nq7mp85d8ax" path="res://killzone.tscn" id="5_sr1g5"]
 [ext_resource type="Texture2D" uid="uid://cakroik4wfoy5" path="res://shifted_plants_and_rocks_tilemap_v02 (1).png" id="6_vebvq"]
 [ext_resource type="Texture2D" uid="uid://b8snvlbaal805" path="res://Anim/enemy anim/StoneTilemap-Shifted.png" id="6_x6esh"]
 [ext_resource type="PackedScene" uid="uid://pn85od1o4evs" path="res://Scenes/Healthpickup.tscn" id="7_bjb4p"]
-[ext_resource type="PackedScene" uid="uid://dwdwh7ehpk4j4" path="res://Scenes/medslime.tscn" id="8_4ckwl"]
+[ext_resource type="PackedScene" uid="uid://dwdwh7ehpk4j4" path="res://Scenes/enemies/medslime.tscn" id="8_4ckwl"]
 [ext_resource type="Script" path="res://Scripts/sm_slimespwanpoint.gd" id="10_qrp50"]
 [ext_resource type="PackedScene" uid="uid://ctguba551bmjb" path="res://Scenes/sword.tscn" id="11_jdnhd"]
 [ext_resource type="Script" path="res://Scripts/medslimespawnpoint.gd" id="12_7pw1n"]
 [ext_resource type="Script" path="res://savingres/save.gd" id="14_7tdii"]
+[ext_resource type="PackedScene" uid="uid://yk84n2xpxra2" path="res://Scenes/enemies/stumpy.tscn" id="15_e8lv1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mafyp"]
 texture = ExtResource("3_pj56p")
@@ -505,17 +506,14 @@ position = Vector2(838, 376)
 [node name="slime4" parent="worldroot" instance=ExtResource("8_4ckwl")]
 position = Vector2(-5271, 1228)
 
-[node name="slime2" parent="worldroot" instance=ExtResource("8_4ckwl")]
-position = Vector2(-4858, -218)
-
-[node name="slime5" parent="worldroot" instance=ExtResource("5_deq7f")]
-position = Vector2(-5797, -170)
-
 [node name="slime6" parent="worldroot" instance=ExtResource("5_deq7f")]
 position = Vector2(-3821, -168)
 
 [node name="medslime" parent="worldroot" instance=ExtResource("8_4ckwl")]
 position = Vector2(-3197, -210)
+
+[node name="stumpy" parent="." instance=ExtResource("15_e8lv1")]
+position = Vector2(-6536, -177)
 
 [connection signal="timeout" from="smslimedelay" to="smSlimespwanpoint" method="_on_smslimedelay_timeout"]
 [connection signal="timeout" from="medslimedelay" to="medslimespawnpoint" method="_on_medslimedelay_timeout"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://blw6acmo7vgbl" path="res://tilemap/DirtTilemap-Shifted.png" id="1_ljgce"]
 [ext_resource type="PackedScene" uid="uid://th02mvw6u4ur" path="res://Scenes/Player.tscn" id="2_6a04a"]
-[ext_resource type="PackedScene" uid="uid://dkrrpdydkuxny" path="res://Scenes/smallslime.tscn" id="3_thpqv"]
+[ext_resource type="PackedScene" uid="uid://dkrrpdydkuxny" path="res://Scenes/enemies/smallslime.tscn" id="3_thpqv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36u0d"]
 texture = ExtResource("1_ljgce")
