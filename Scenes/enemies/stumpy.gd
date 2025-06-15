@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var hurtbox = $hurtbox
 @onready var deathsound = $death
 @export var hp = 5
+@onready var vision = $vision
 var canjump = false
 var made_timer = false
 var direction: float
@@ -24,6 +25,12 @@ func _ready():
 	if untiljumptimer:
 		untiljumptimer.timeout.connect(_on_untiljumptimer_timeout)
 func _physics_process(delta):
+	var overlapping_bodies = vision.get_overlapping_bodies()
+	if overlapping_bodies.has(Playerid.player):
+		if self.global_position.x < Playerid.player.global_position.x:
+			direction = 1
+		elif self.global_position.x > Playerid.player.global_position.x:
+			direction = -1
 	if not is_on_floor():
 		velocity.y += gravity
 		if velocity.y > 3000:
@@ -52,7 +59,7 @@ func _physics_process(delta):
 			next_direction = -direction
 		last_jump_direction = direction
 		start_random_until_jump_timer()
-	if direction == -1 && flipsprite && not is_on_floor():
+	if direction == -1 && not is_on_floor():
 		stumpy.flip_h = true
 	if direction == 1 && is_on_floor():
 		stumpy.flip_h = false
@@ -60,9 +67,6 @@ func _physics_process(delta):
 		velocity.x = 0
 	if velocity.x == 0 && not dead:
 		ap.play("idle")
-		flipsprite = false
-	else:
-		flipsprite = true
 
 func start_random_until_jump_timer():
 	if untiljumptimer:

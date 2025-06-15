@@ -38,6 +38,8 @@ var backwardswalk = false
 var mouseside = 0
 var speed = 1000
 var flashhealth = currentHealth
+func _ready():
+	Playerid.player = self
 func _physics_process(delta):
 	if currentHealth > 0:
 		heart.show()

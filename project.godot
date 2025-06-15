@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Isdisabledhppickup="*res://Scripts/isdisabledhppickup.gd"
+Playerid="*res://Scripts/playerid.gd"
 
 [display]
 
