@@ -73,8 +73,8 @@ func _physics_process(delta):
 		ap.play("Sword swing")
 	var horizontal_direction = Input.get_axis("move left","move right")
 	velocity.x = speed * horizontal_direction
-	var mouse_position = get_viewport().get_mouse_position()
-	var screen = get_viewport().get_size()
+	var mouse_position = DisplayServer.mouse_get_position()
+	var screen = DisplayServer.screen_get_size()
 	var sprite_center = screen/2
 	if mouseside != horizontal_direction:
 		backwardswalk = true
