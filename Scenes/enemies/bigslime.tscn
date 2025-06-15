@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dedvgpi2phqbk"]
 
-[ext_resource type="Script" path="res://Scripts/bigslime.gd" id="1_dp0sa"]
+[ext_resource type="Script" path="res://Scripts/enemies/bigslime.gd" id="1_dp0sa"]
 [ext_resource type="Texture2D" uid="uid://ccdfigqxn755r" path="res://Anim/enemy anim/slime(test)/New Piskel (35).png" id="2_iauep"]
 
 [sub_resource type="Animation" id="Animation_vma26"]

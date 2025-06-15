@@ -323,6 +323,10 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gslnh"]
 radius = 696.328
+=======
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwvnu"]
+radius = 235.544
+>>>>>>> cb34f0141005bedca3f1ab670d2bfb20eb45903b
 
 [node name="stumpy" type="CharacterBody2D"]
 script = ExtResource("1_fo867")
@@ -370,9 +374,16 @@ stream = ExtResource("5_nlyev")
 
 [node name="vision" type="Area2D" parent="."]
 
+<<<<<<< HEAD
 [node name="visionshape" type="CollisionShape2D" parent="vision"]
 position = Vector2(-7, 0)
 shape = SubResource("CircleShape2D_gslnh")
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
+position = Vector2(-8, 2)
+shape = SubResource("CircleShape2D_vwvnu")
+>>>>>>> cb34f0141005bedca3f1ab670d2bfb20eb45903b
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="removevelocitytimer" to="." method="_on_removevelocitytimer_timeout"]
+[connection signal="area_entered" from="vision" to="." method="_on_vision_area_entered"]

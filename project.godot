@@ -22,7 +22,9 @@ Playerid="*res://Scripts/playerid.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/mode=2
+window/size/extend_to_title=true
+window/stretch/mode="viewport"
 
 [global_group]
 
@@ -30,6 +32,7 @@ camera=""
 healthpickup=""
 mediumslime=""
 game_events=""
+player=""
 
 [input]
 

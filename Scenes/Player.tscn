@@ -398,8 +398,11 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -458,7 +461,7 @@ size = Vector2(94, 238)
 [sub_resource type="Theme" id="Theme_a03oe"]
 default_font_size = 200
 
-[node name="Wrigg" type="CharacterBody2D"]
+[node name="Wrigg" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_d3vyt")
 
 [node name="heart" type="Sprite2D" parent="."]
@@ -518,7 +521,6 @@ scale = Vector2(0.61875, 0.753125)
 texture = ExtResource("4_tulo4")
 offset = Vector2(-40, 0)
 hframes = 21
-frame = 3
 metadata/_edit_group_ = true
 
 [node name="Swordhitboxdefault" type="Area2D" parent="wrigg"]
@@ -626,10 +628,17 @@ wait_time = 0.4
 [connection signal="area_entered" from="wrigg/Swordhitboxdefault" to="." method="_on_swordhitboxdefault_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
+<<<<<<< HEAD
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
+=======
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
+>>>>>>> cb34f0141005bedca3f1ab670d2bfb20eb45903b
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
