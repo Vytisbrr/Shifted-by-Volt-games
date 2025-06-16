@@ -229,17 +229,3 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			 
 			healthChanged.emit(currentHealth)
 			tookdmg
-
-
-func _on_playerhitbox_stumpyarea_entered(area: Area2D):
-	if area.name == "stumpyhitbox":
-			currentHealth -= 10
-			camera.trigger_shake(10, 15)
-			framefreeze(0.10, 0.3)
-			if currentHealth <= 0:
-				currentHealth = 0
-				deathtimer.start()
-			
-			 
-			healthChanged.emit(currentHealth)
-			tookdmg
