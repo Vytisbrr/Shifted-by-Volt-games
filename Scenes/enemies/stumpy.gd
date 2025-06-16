@@ -13,6 +13,10 @@ extends CharacterBody2D
 @onready var deathsound = $death
 @export var hp = 5
 @onready var vision = $vision
+@onready var attackrange = $attackrange
+@onready var stumpyhitbox = $stumpyhitbox
+@onready var hitboxarea = $"stumpyhitbox/active_deactive area"
+@onready var attackcooldown = $attackcooldown
 var canjump = false
 var made_timer = false
 var direction: float
@@ -21,16 +25,35 @@ var numoftimessamedir: int = 0
 var last_jump_direction: float = 0.0
 var flipsprite:bool
 var dead = false
+var canattack = true
 func _ready():
 	if untiljumptimer:
 		untiljumptimer.timeout.connect(_on_untiljumptimer_timeout)
+	if attackcooldown:
+		attackcooldown.timeout.connect(_on_attackcooldown_timeout)
 func _physics_process(delta):
 	var overlapping_bodies = vision.get_overlapping_bodies()
-	if overlapping_bodies.has(Playerid.player):
-		if self.global_position.x < Playerid.player.global_position.x:
-			direction = 1
-		elif self.global_position.x > Playerid.player.global_position.x:
-			direction = -1
+	var attack_in_range = attackrange.get_overlapping_bodies()
+	if overlapping_bodies.has(Playerid.player) && self.global_position.x < Playerid.player.global_position.x && not dead && not attack_in_range.has(Playerid.player):
+		direction = 1
+	elif  overlapping_bodies.has(Playerid.player) && self.global_position.x > Playerid.player.global_position.x && not dead && not attack_in_range.has(Playerid.player):
+		direction = -1
+	if attack_in_range.has(Playerid.player) && not dead:
+		var distancetoplayer_x = abs(Playerid.player.global_position.x - self.global_position.x)
+		if canattack == true && overlapping_bodies.has(Playerid.player) && is_on_floor():
+			var randattackcooldown = randi_range(2, 3)
+			attackcooldown.wait_time = randattackcooldown
+			attackcooldown.one_shot = true
+			canattack = false
+			attackcooldown.start()
+			hitboxarea.disabled = false
+			velocity.x = min(distancetoplayer_x * 0.9, 750) * direction
+			velocity.y = -jumpheight
+			ap.play("jump")
+		elif canattack == false && is_on_floor():
+			hitboxarea.disabled = true
+	else:
+		hitboxarea.disabled = true
 	if not is_on_floor():
 		velocity.y += gravity
 		if velocity.y > 3000:
@@ -91,3 +114,5 @@ func _on_hurtbox_area_entered(area: Area2D):
 			ap.play("death")
 			dead = true
 			deathsound.play()
+func _on_attackcooldown_timeout():
+	canattack = true
