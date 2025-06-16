@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://yk84n2xpxra2"]
+[gd_scene load_steps=15 format=3 uid="uid://yk84n2xpxra2"]
 
 [ext_resource type="Texture2D" uid="uid://crj7fnxs1re5b" path="res://Anim/enemy anim/stumpy/Stumpy_boi_v2-0001-Sheet.png" id="1_0clfm"]
 [ext_resource type="Script" path="res://Scenes/enemies/stumpy.gd" id="1_fo867"]
@@ -322,7 +322,13 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gslnh"]
-radius = 696.328
+radius = 844.021
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qo007"]
+radius = 400.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx1ad"]
+size = Vector2(86, 132)
 
 [node name="stumpy" type="CharacterBody2D"]
 script = ExtResource("1_fo867")
@@ -373,6 +379,22 @@ stream = ExtResource("5_nlyev")
 [node name="visionshape" type="CollisionShape2D" parent="vision"]
 position = Vector2(-7, 0)
 shape = SubResource("CircleShape2D_gslnh")
+
+[node name="attackrange" type="Area2D" parent="."]
+
+[node name="attackrangeshape" type="CollisionShape2D" parent="attackrange"]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_qo007")
+
+[node name="stumpyhitbox" type="Area2D" parent="."]
+position = Vector2(-7, 0)
+
+[node name="atctive_deactive area" type="CollisionShape2D" parent="stumpyhitbox"]
+position = Vector2(-3, 13)
+shape = SubResource("RectangleShape2D_dx1ad")
+disabled = true
+
+[node name="attackcooldowntimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="removevelocitytimer" to="." method="_on_removevelocitytimer_timeout"]

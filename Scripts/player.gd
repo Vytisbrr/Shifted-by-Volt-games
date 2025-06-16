@@ -41,6 +41,10 @@ var flashhealth = currentHealth
 func _ready():
 	Playerid.player = self
 func _physics_process(delta):
+	var horizontal_direction = Input.get_axis("move left","move right")
+	var mouse_position = DisplayServer.mouse_get_position()
+	var screen = DisplayServer.screen_get_size()
+	var sprite_center = screen/2
 	if currentHealth > 0:
 		heart.show()
 		coffin.hide()
@@ -55,9 +59,20 @@ func _physics_process(delta):
 		isdashing = true
 		dashcoolingdown = true
 		dashcooldowntimer.start()
-	if isdashing == true && isattacking == false:
-		speed = dashspeed
-	elif isattacking == true:
+	if isdashing == true:
+		if mouse_position.x > sprite_center.x:
+			if horizontal_direction == 0 or horizontal_direction != 0 && horizontal_direction == mouseside:
+				velocity.x = dashspeed * 1
+		elif mouse_position.x > sprite_center.x:
+			if horizontal_direction != 0 && horizontal_direction != mouseside:
+				velocity.x = dashspeed * horizontal_direction
+		if mouse_position.x < sprite_center.x && horizontal_direction == mouseside:
+			if horizontal_direction == 0 or horizontal_direction != 0 && horizontal_direction == mouseside:
+				velocity.x = dashspeed * -1
+		elif mouse_position.x < sprite_center.x && horizontal_direction != mouseside:
+			if horizontal_direction != 0 && horizontal_direction != mouseside:
+				velocity.x = dashspeed * horizontal_direction
+	if isattacking == true && isdashing == false:
 		speed = attackingspeed
 	elif isattacking == false && isdashing == false:
 		speed = normalspeed
@@ -71,11 +86,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") && !isattacking && has_sword:
 		isattacking = true
 		ap.play("Sword swing")
-	var horizontal_direction = Input.get_axis("move left","move right")
-	velocity.x = speed * horizontal_direction
-	var mouse_position = DisplayServer.mouse_get_position()
-	var screen = DisplayServer.screen_get_size()
-	var sprite_center = screen/2
+	if isdashing == false:
+		velocity.x = speed * horizontal_direction
 	if mouseside != horizontal_direction:
 		backwardswalk = true
 	else:
@@ -222,6 +234,18 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			currentHealth -= 15
 			camera.trigger_shake(10, 110)
 			framefreeze(0.07, 0.5)
+			if currentHealth <= 0:
+				currentHealth = 0
+				deathtimer.start()
+			
+			 
+			healthChanged.emit(currentHealth)
+			tookdmg
+func _on_playerhitbox_stumpyarea_entered(area: Area2D):
+	if area.name == "stumpyhitbox":
+			currentHealth -= 10
+			camera.trigger_shake(10, 15)
+			framefreeze(0.10, 0.3)
 			if currentHealth <= 0:
 				currentHealth = 0
 				deathtimer.start()
