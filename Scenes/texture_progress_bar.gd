@@ -1,6 +1,6 @@
 extends TextureProgressBar
-@onready var player = get_parent()
-@onready var dmgbartimer = $"../dmgtimer"
+@onready var player = get_parent().get_parent()
+@onready var dmgbartimer = $"../../dmgtimer"
 @onready var dmgbar = $"../dmgbar"
 var dmgbaract = false
 func _on_value_changed(value: float):

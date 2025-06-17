@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 signal healthChanged
 signal tookdmg
-@onready var coffin = $coffin
-@onready var heart = $heart
-@onready var hptext = $Label
+@onready var coffin = $Camera2D/coffin
+@onready var heart = $Camera2D/heart
+@onready var hptext = $Camera2D/Label
 @onready var Hppickups = 0
 @export var normalspeed = 1000
 @export var attackingspeed = 200

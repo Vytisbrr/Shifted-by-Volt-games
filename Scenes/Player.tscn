@@ -20,6 +20,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
 
+[sub_resource type="Theme" id="Theme_a03oe"]
+default_font_size = 400
+
 [sub_resource type="Animation" id="Animation_3a3ft"]
 resource_name = "Death"
 
@@ -455,50 +458,8 @@ size = Vector2(94, 238)
 
 [sub_resource type="GDScript" id="GDScript_a65cv"]
 
-[sub_resource type="Theme" id="Theme_a03oe"]
-default_font_size = 200
-
 [node name="Wrigg" type="CharacterBody2D"]
 script = ExtResource("1_d3vyt")
-
-[node name="heart" type="Sprite2D" parent="."]
-position = Vector2(-1073, -522)
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("2_qt1xm")
-
-[node name="coffin" type="Sprite2D" parent="."]
-position = Vector2(-1072, -522)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_ijndh")
-
-[node name="dmgbar" type="TextureProgressBar" parent="."]
-offset_left = -985.0
-offset_top = -713.0
-offset_right = 635.0
-offset_bottom = -73.0
-scale = Vector2(0.6, 0.6)
-value = 80.0
-stretch_margin_left = 1
-stretch_margin_top = 4
-stretch_margin_right = 1
-stretch_margin_bottom = 4
-texture_under = ExtResource("8_inurm")
-texture_progress = ExtResource("5_vruh1")
-
-[node name="healthbar" type="TextureProgressBar" parent="."]
-offset_left = -985.0
-offset_top = -713.0
-offset_right = 635.0
-offset_bottom = -73.0
-scale = Vector2(0.6, 0.6)
-value = 50.0
-stretch_margin_left = 1
-stretch_margin_top = 4
-stretch_margin_right = 1
-stretch_margin_bottom = 4
-texture_under = ExtResource("7_b1mth")
-texture_progress = ExtResource("9_0kpxa")
-script = ExtResource("12_mrij1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -509,8 +470,65 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(-4, 33)
 zoom = Vector2(0.5, 0.5)
-limit_bottom = 6200
+limit_bottom = 5800
 script = ExtResource("2_jo4j8")
+
+[node name="heart" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1814, -889)
+texture = ExtResource("2_qt1xm")
+
+[node name="coffin" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1813, -889)
+texture = ExtResource("3_ijndh")
+
+[node name="dmgbar" type="TextureProgressBar" parent="Camera2D"]
+offset_left = -1705.0
+offset_top = -1226.0
+offset_right = -85.0
+offset_bottom = -586.0
+value = 80.0
+stretch_margin_left = 1
+stretch_margin_top = 4
+stretch_margin_right = 1
+stretch_margin_bottom = 4
+texture_under = ExtResource("8_inurm")
+texture_progress = ExtResource("5_vruh1")
+
+[node name="healthbar" type="TextureProgressBar" parent="Camera2D"]
+offset_left = -1704.0
+offset_top = -1226.0
+offset_right = -84.0
+offset_bottom = -586.0
+value = 50.0
+stretch_margin_left = 1
+stretch_margin_top = 4
+stretch_margin_right = 1
+stretch_margin_bottom = 4
+texture_under = ExtResource("7_b1mth")
+texture_progress = ExtResource("9_0kpxa")
+script = ExtResource("12_mrij1")
+
+[node name="Unnamed(2)" type="Sprite2D" parent="Camera2D"]
+position = Vector2(1579, 904)
+scale = Vector2(0.3, 0.334)
+texture = ExtResource("7_ygmv1")
+
+[node name="Label" type="Label" parent="Camera2D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1705.0
+offset_top = 637.0
+offset_right = 1933.0
+offset_bottom = 1183.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_a03oe")
+theme_type_variation = &"HeaderLarge"
+text = "0"
+horizontal_alignment = 1
 
 [node name="wrigg" type="Sprite2D" parent="."]
 position = Vector2(15.25, -4.5)
@@ -583,28 +601,6 @@ target_position = Vector2(0, 52)
 collide_with_areas = true
 script = SubResource("GDScript_a65cv")
 
-[node name="Unnamed(2)" type="Sprite2D" parent="."]
-position = Vector2(952, 584)
-scale = Vector2(0.167969, 0.186523)
-texture = ExtResource("7_ygmv1")
-
-[node name="Label" type="Label" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1037.0
-offset_top = 451.0
-offset_right = 1151.0
-offset_bottom = 724.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = SubResource("Theme_a03oe")
-theme_type_variation = &"HeaderLarge"
-text = "0"
-horizontal_alignment = 1
-
 [node name="Pause Menu" parent="." instance=ExtResource("7_wh3cp")]
 visible = false
 offset_left = -642.0
@@ -621,17 +617,17 @@ wait_time = 0.1
 [node name="dmgtimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[connection signal="tookdmg" from="." to="healthbar" method="_on_wrigg_tookdmg"]
-[connection signal="value_changed" from="healthbar" to="healthbar" method="_on_value_changed"]
+[connection signal="tookdmg" from="." to="Camera2D/healthbar" method="_on_wrigg_tookdmg"]
+[connection signal="value_changed" from="Camera2D/healthbar" to="Camera2D/healthbar" method="_on_value_changed"]
 [connection signal="area_entered" from="wrigg/Swordhitboxdefault" to="." method="_on_swordhitboxdefault_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_stumpyarea_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_stumpyarea_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]
@@ -639,4 +635,4 @@ wait_time = 0.4
 [connection signal="timeout" from="fall dmg" to="." method="_on_fall_dmg_timeout"]
 [connection signal="timeout" from="swordpickuptimer" to="." method="_on_swordpickuptimer_timeout"]
 [connection signal="timeout" from="hitstoptimer" to="." method="_on_hitstoptimer_timeout"]
-[connection signal="timeout" from="dmgtimer" to="healthbar" method="_on_dmgtimer_timeout"]
+[connection signal="timeout" from="dmgtimer" to="Camera2D/healthbar" method="_on_dmgtimer_timeout"]
