@@ -18,21 +18,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 Isdisabledhppickup="*res://Scripts/isdisabledhppickup.gd"
-Playerid="*res://Scripts/playerid.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [global_group]
 
 camera=""
 healthpickup=""
+slime=""
 mediumslime=""
-game_events=""
 
 [input]
 
