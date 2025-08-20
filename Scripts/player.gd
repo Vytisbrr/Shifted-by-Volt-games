@@ -19,6 +19,10 @@ signal tookdmg
 @onready var Jumpbuffertimer = $Jumpbuffertimer
 @onready var swordhitboxdefault = $wrigg/Swordhitboxdefault
 @export var dashspeed = 6000
+var knockback: Vector2 = Vector2.ZERO
+@export var knockback_strength: float = 600.0
+@export var knockback_decay: float = 1000.0
+
 var can_coyote_jump = false
 var jump_buffered = false
 var isdashing = false
@@ -45,6 +49,8 @@ func _physics_process(delta):
 	var mouse_position = DisplayServer.mouse_get_position()
 	var screen = DisplayServer.screen_get_size()
 	var sprite_center = screen/2
+
+	
 	if currentHealth > 0:
 		heart.show()
 		coffin.hide()
@@ -104,6 +110,9 @@ func _physics_process(delta):
 	if mouse_position.x > sprite_center.x:
 		swordhitboxdefault.scale.x = 1.616
 		swordhitboxdefault.position.x = -24.646
+	if knockback.length() > 0.1:
+		velocity += knockback
+	knockback = knockback.move_toward(Vector2.ZERO, knockback_decay * delta)
 	move_and_slide()
 	if was_on_floor && !is_on_floor() && velocity.y >= 0:
 		can_coyote_jump = true
@@ -243,13 +252,29 @@ func _on_playerhitbox_medslime_entered(area: Area2D) -> void:
 			tookdmg
 func _on_playerhitbox_stumpyarea_entered(area: Area2D):
 	if area.name == "stumpyhitbox":
-			currentHealth -= 10
-			camera.trigger_shake(10, 15)
-			framefreeze(0.10, 0.3)
-			if currentHealth <= 0:
-				currentHealth = 0
-				deathtimer.start()
+		currentHealth -= 10
+		camera.trigger_shake(10, 15)
+		framefreeze(0.10, 0.3)
+
+		apply_knockback(area.global_position)
+
+		if currentHealth <= 0:
+			currentHealth = 0
+			deathtimer.start()
 			
 			 
 			healthChanged.emit(currentHealth)
 			tookdmg
+
+func apply_knockback(source_position: Vector2) -> void:
+	var direction = (global_position - source_position).normalized()
+	
+	if abs(direction.y) > abs(direction.x):
+
+		direction.y = 0.1 # this changes the power of horizontal knock back but you can increase the overall power using the knocback power export above :D
+
+	
+	direction.x *= 5.0  #this changes the power of vertical knocback
+	
+	direction = direction.normalized()
+	knockback = direction * knockback_strength
