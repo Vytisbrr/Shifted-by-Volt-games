@@ -1,10 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://th02mvw6u4ur"]
+[gd_scene load_steps=32 format=3 uid="uid://th02mvw6u4ur"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_d3vyt"]
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="2_jo4j8"]
 [ext_resource type="Texture2D" uid="uid://dvf8cbci0v5k2" path="res://health/New Piskel (9).png" id="2_qt1xm"]
 [ext_resource type="Texture2D" uid="uid://cxaw5ves30wd7" path="res://health/New Piskel (10).png" id="3_ijndh"]
-[ext_resource type="Texture2D" uid="uid://bdmut3irs2pu0" path="res://Anim/Player animations/wrigg/Wrigg_JumpwHands-Sheet.png" id="3_rh1g0"]
 [ext_resource type="Texture2D" uid="uid://fg2voanpej4p" path="res://Art/New Piskel (7).png" id="4_hvv5m"]
 [ext_resource type="Texture2D" uid="uid://cxsd5npfeyabb" path="res://Anim/Player animations/wrigg/Wrigg_Idle-Sheet.png" id="4_tulo4"]
 [ext_resource type="Texture2D" uid="uid://dydajspr2jg35" path="res://health/flashbar (1).png" id="5_vruh1"]
@@ -16,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://uj7517bfm0xq" path="res://health/HP bar (2).png" id="8_inurm"]
 [ext_resource type="Texture2D" uid="uid://hui3i6rxbxo5" path="res://health/HP bar (3).png" id="9_0kpxa"]
 [ext_resource type="Script" path="res://Scenes/texture_progress_bar.gd" id="12_mrij1"]
+[ext_resource type="Texture2D" uid="uid://b4rysdx3cmud5" path="res://Anim/Player animations/wrigg/WriggLiftOff-Sheet.png" id="13_j3ue8"]
+[ext_resource type="Texture2D" uid="uid://ckjgcbadcy74j" path="res://Anim/Player animations/wrigg/WriggLanding-Sheet.png" id="15_fkmfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt4lo"]
 size = Vector2(59, 226)
@@ -25,58 +26,6 @@ default_font_size = 400
 
 [sub_resource type="Animation" id="Animation_3a3ft"]
 resource_name = "Death"
-
-[sub_resource type="Animation" id="Animation_lon5p"]
-resource_name = "Jump"
-length = 0.13
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("wrigg:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_rh1g0")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("wrigg:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("wrigg:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("wrigg:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 2]
-}
 
 [sub_resource type="Animation" id="Animation_dbkr2"]
 length = 0.2
@@ -216,6 +165,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("wrigg:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.25, -4.49995)]
+}
 
 [sub_resource type="Animation" id="Animation_7f3s7"]
 resource_name = "backwardswalk"
@@ -269,6 +230,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ExtResource("6_8ej24")]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("wrigg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.25, -4.49995)]
+}
 
 [sub_resource type="Animation" id="Animation_a7ybx"]
 resource_name = "falling"
@@ -277,38 +250,38 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("wrigg:texture")
+tracks/0/path = NodePath("wrigg:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_rh1g0")]
+"values": [4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("wrigg:hframes")
+tracks/1/path = NodePath("wrigg:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("wrigg:vframes")
+tracks/2/path = NodePath("wrigg:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [ExtResource("15_fkmfs")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -320,7 +293,19 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("wrigg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.025),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.25, -4.49995)]
 }
 
 [sub_resource type="Animation" id="Animation_b7dj5"]
@@ -440,11 +425,152 @@ tracks/3/keys = {
 "update": 0,
 "values": [ExtResource("6_8ej24")]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("wrigg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.25, -4.49995)]
+}
+
+[sub_resource type="Animation" id="Animation_m6tav"]
+resource_name = "Jump_right"
+length = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wrigg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65.25, -4.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wrigg:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_j3ue8")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wrigg:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("wrigg:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("wrigg:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_lon5p"]
+resource_name = "Jump_left"
+length = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wrigg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15.25, -4.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wrigg:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_j3ue8")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wrigg:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("wrigg:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("wrigg:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0rht"]
 _data = {
 "Death": SubResource("Animation_3a3ft"),
-"Jump": SubResource("Animation_lon5p"),
+"Jump_left": SubResource("Animation_lon5p"),
+"Jump_right": SubResource("Animation_m6tav"),
 "RESET": SubResource("Animation_dbkr2"),
 "Sword swing": SubResource("Animation_po35h"),
 "backwardswalk": SubResource("Animation_7f3s7"),
@@ -622,12 +748,12 @@ wait_time = 0.4
 [connection signal="area_entered" from="wrigg/Swordhitboxdefault" to="." method="_on_swordhitboxdefault_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
-[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_stumpyarea_entered"]
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_smslime_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_healthpickup_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_stumpyarea_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_medslime_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]
 [connection signal="timeout" from="Jumpbuffertimer" to="." method="_on_jumpbuffertimer_timeout"]
 [connection signal="timeout" from="dashtimer" to="." method="_on_dashtimer_timeout"]

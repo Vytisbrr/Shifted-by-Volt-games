@@ -124,8 +124,8 @@ func _physics_process(delta):
 			jump()
 	updateanimations(horizontal_direction)
 func updateanimations(horizotal_direction):
-	var mouse_position = get_viewport().get_mouse_position()
-	var screen = get_viewport().get_size()
+	var mouse_position = DisplayServer.mouse_get_position()
+	var screen = DisplayServer.screen_get_size()
 	var sprite_center = screen/2
 	if is_on_floor() && isattacking == false:
 		if horizotal_direction == 0 && velocity.y == 0:
@@ -135,8 +135,10 @@ func updateanimations(horizotal_direction):
 		elif velocity.y == 0 && horizotal_direction != 0 && backwardswalk == true:
 			ap.play("backwardswalk")
 	else:
-		if velocity.y < 0 && isattacking == false:
-			ap.play("Jump")
+		if velocity.y < 0 && isattacking == false && mouse_position.x > sprite_center.x:
+			ap.play("Jump_right")
+		if velocity.y < 0 && isattacking == false && mouse_position.x < sprite_center.x:
+			ap.play("Jump_left")
 		elif velocity.y > 0 && isattacking == false:
 			ap.play("falling")
 func _on_coyotetimer_timeout():
